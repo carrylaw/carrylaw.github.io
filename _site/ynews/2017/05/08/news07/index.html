@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      人工智能、机器学习与深度学习的联系与区别 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<h3 class="masthead-title">
+					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+			        </h3>
+				<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">人工智能、机器学习与深度学习的联系与区别</h1>
+  <span class="post-date">08 May 2017</span>
+  <div><p>  从2012年开始，宏观到人工智能引爆工业4.0变革，微观到智能家居改变传统生活，我们总能耳濡目染到“人工智能”这个概念。为什么“人工智能”突然间受到如此高度的关注？这源于“深度学习”革命性的突破，直接推动了“人工智能”由方法论走向实体产品。例如我们常听到的无人驾驶技术、无人机送货服务等，都是人工智能在生产和生活中的具体应用。既然说到了人工智能与深度学习，这里得再引入一个“机器学习”的概念。<strong>因为这三者之间的关系类似于一个同心轴，即人工智能涵盖了机器学习，而深度学习只是机器学习中的一个重要分支</strong>。具体可见下图：</p>
+
+<div align="center">
+<img width="500" height="250" src="https://github.com/carrylaw/IMG/blob/master/img/sucai16.png?raw=true" />
+</div>
+
+<p><strong>那么这三者具体又都是什么呢？</strong></p>
+
+<h2 id="span-stylecolor008b8b-artificial-intelligencespan"><strong><span style="color:#008B8B">· 人工智能（Artificial Intelligence）：机器模拟人类的科学</span></strong></h2>
+
+<p>  美国麻省理工学院温斯顿教授曾经说过：“人工智能就是研究如何利用计算机代替只有人类才能做的智能工作。”即人工智能本质是研究人类智能活动的规律，构造具有一定人类智能的人工系统，从而应用计算机的软硬件来模拟人类某些智能行为的基本理论、方法和技术。 </p>
+
+<div align="center">
+<img width="500" height="250" src="https://github.com/carrylaw/IMG/blob/master/img/sucai17.png?raw=true" />
+</div>
+
+<p>  不知道大家有没有试着用苹果手机的<strong>“Siri功能”</strong>，它就是人工智能应用的一个典型代表。首先你得说一句话作为语音输入，然后苹果后台会把你说的话转译成文本，接下来系统会根据输入的文本进行分词、实体识别、依存句法等文本挖掘，最后输出一个有效的结果反馈给你。</p>
+
+<div align="center">
+<img width="700" src="https://github.com/carrylaw/IMG/blob/master/img/sucai18.png?raw=true" />
+</div>
+
+<p>  这便是利用机器理解自然语言的典型案例，其他的人工智能领域还包括：指纹识别、人脸识别、智能搜索、专家系统等。</p>
+
+<h2 id="span-stylecolor008b8b-machine-learningspan"><strong><span style="color:#008B8B">· 机器学习（Machine Learning）：实现人工智能的一种方法</span></strong></h2>
+
+<p>  简单来说，机器学习就是利用机器替代人类学习的过程。<strong>图像识别</strong>一直是机器学习广泛应用的领域之一。关于图像识别，首先要搜集大量的图像A，在此基础上，依据多种组合算法让机器识别并记录这些图像A。然后输入一批新的图像B，机器就能够根据之前学习到的图像A的信息，将图像B中与A信息匹配度高的图像归结为一类，将匹配度低的图像B重新经过模型训练分组。这便是机器学习的典型应用，其目的是利用机器高效处理并存储数据的能力去替换原有人脑长时间记忆学习的过程。</p>
+
+<div align="center">
+<img width="500" height="250" src="https://github.com/carrylaw/IMG/blob/master/img/sucai19.png?raw=true" />
+</div>
+
+<h2 id="span-stylecolor008b8b-deep-learningspan"><strong><span style="color:#008B8B">· 深度学习（Deep Learning）：实现机器学习的一种技术</span></strong></h2>
+
+<p>  快进到今天，我们看到的是一个夺人眼球的技术——深度学习。而在深度学习的模型中，受宠爱最多的就是被用在大规模图像识别任务中的<strong>卷积神经网络（Convolutional Neural Nets，CNN）</strong>，简称ConvNets。</p>
+
+<div align="center">
+<img width="500" height="250" src="https://github.com/carrylaw/IMG/blob/master/img/sucai20.png?raw=true" />
+</div>
+
+<p>  深度学习强调的是模型中的参数是从数据中学习获得的。由此深度学习也带来了一些其他需要考虑的问题。例如典型的卷积神经网络，如上图机器面对的是一个高维的空间模型，因此想要实现其参数自动化调整需要两个方面的硬性指标：第一，大量且真实有效的数据，第二，强大的计算机运算能力。    
+  总而言之，不要过于崇拜深度学习框架，但也不要害怕对这些框架进行裁剪和调整，以得到能和你的算法协同工作的软件框架。未来的Linux内核也许会在一个非常流行的深度学习框架上运行，例如Caffe。记住，历史上所有成功的产品总是需要伟大的愿景、领域的专业知识、市场的开发和最重要的——人类的创造力。</p>
+
+<p><strong>参考文献：</strong></p>
+
+<p><a href="https://blogs.nvidia.com/blog/2016/07/29/whats-difference-artificial-intelligence-machine-learning-deep-learning-ai/">- What’s the Difference Between Artificial Intelligence, Machine Learning, and Deep Learning?</a></p>
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/ynews/" style="background-color:#242A3A">相关资讯</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/bmarchine/2017/08/30/ml02/">
+            Python机器学习算法之逻辑回归
+            <small>30 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/19/nlp02/">
+            文本分类器构建方法及程序设计
+            <small>19 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/09/nlp01/">
+            HMM隐马尔可夫模型的实例
+            <small>09 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

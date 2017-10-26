@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      HMM隐马尔可夫模型的实例 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<h3 class="masthead-title">
+					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+			        </h3>
+				<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">HMM隐马尔可夫模型的实例</h1>
+  <span class="post-date">09 Aug 2017</span>
+  <div><h2 id="section"><strong>1.引言</strong></h2>
+
+<p>  最近看到许多同学对<strong>自然语言处理（NLP）</strong>都非常感兴趣，但对于NLP中一些基本的统计模型并不够了解。遂写下该博文，帮助大家掌握NLP中文分词这一大板块比较核心的统计模型——HMM隐马尔可夫模型。    
+  <strong>HMM模型</strong>的全称是Hidden Markov Model，看关键词就知道该模型中存在隐含层，它是用来描述一个含有隐含未知参数的马尔可夫过程，其目的是希望通过求解这些隐含的参数来进行实体识别，说简单些也就是起到词语粘合的作用。    
+  举一个经典的实例：一个北京的朋友每天根据天气【下雨，天晴】决定当天的活动【公园散步,购物,清理房间】中的一种，我每天只能在朋友圈上看到她发的消息 “我前天公园散步，昨天购物，今天清理房间了！”，那么我如何根据她发的消息推断北京这三天的天气？</p>
+
+<h2 id="section-1"><strong>2.隐马尔可夫模型概述</strong></h2>
+
+<p>  任何一个HMM模型都包括如下五方面：   
+  Obs 显现层   
+  States 隐含层   
+  Start_p 初始概率   
+  Trans_p 转移概率   
+  Emit_p 发射概率
+&lt;div align="center"&gt;   
+<img width="600" height="250" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai2.png" /> 
+图：HMM隐马尔可夫模型变迁图
+&lt;/div&gt;</p>
+
+<h2 id="section-2"><strong>3.样例计算</strong></h2>
+
+<p><strong>命题：“我前天公园散步，昨天购物，今天清理房间了！”</strong>  </p>
+
+<p><strong>HMM模型的计算公式：</strong></p>
+
+<pre><code class="language-python"># 隐含层
+states = ('Rainy', 'Sunny')
+# 显现层
+observations = ('walk', 'shop', 'clean')
+# 初始概率
+start_probability = {'Rainy': 0.6, 'Sunny': 0.4}
+# 转移概率
+transition_probability = {
+    'Rainy': {'Rainy': 0.7, 'Sunny': 0.3},
+    'Sunny': {'Rainy': 0.4, 'Sunny': 0.6},
+}
+# 发射概率
+emission_probability = {
+    'Rainy': {'walk': 0.1, 'shop': 0.4, 'clean': 0.5},
+    'Sunny': {'walk': 0.6, 'shop': 0.3, 'clean': 0.1},
+}
+</code></pre>
+
+<p>【第一天】【散步】= [初始概率,下雨] * [发射概率,散步] = 0.6*0.1 = 0.06   
+【第一天】【散步】= [初始概率,晴天] * [发射概率,散步] = 0.4*0.6 = <strong><span style="color:red">0.24</span></strong>     
+因为0.24&gt;0.06，所以第一天可能是 <strong>晴天</strong></p>
+
+<p>【第二天】【购物】= [初始概率,晴天] * [转移概率,M=&gt;下雨] * [发射概率,购物] = 0.24*0.4*0.4= 0.0384   
+【第二天】【购物】= [初始概率,晴天] * [转移概率,M=&gt;晴天] * [发射概率,购物] = 0.24*0.6*0.3= <strong><span style="color:red">0.0432</span></strong>   
+【第二天】【购物】= [初始概率,下雨] * [转移概率,M=&gt;下雨] * [发射概率,购物] = 0.06*0.7*0.4= 0.0168      
+【第二天】【购物】= [初始概率,下雨] * [转移概率,M=&gt;晴天] * [发射概率,购物] = 0.06*0.3*0.3= 0.0054   
+需要注意的是，这里0.0432是<strong>累积概率</strong> ，所以<strong>全局最优解：</strong> 第一天 <strong>晴天</strong>；第二天 <strong>晴天</strong>（不能够理解这句话的同学请继续看第三天）   </p>
+
+<p>【第三天】【清理】= [初始概率,晴天,下雨] * [转移概率,M=&gt;下雨] * [发射概率,清理] = 0.0384*0.7*0.5= <strong><span style="color:red">0.01344</span></strong>   
+【第三天】【清理】= [初始概率,晴天,下雨] * [转移概率,M=&gt;晴天] * [发射概率,清理] = 0.0384*0.3*0.1= 0.00115   
+【第三天】【清理】= [初始概率,晴天,晴天] * [转移概率,M=&gt;下雨] * [发射概率,清理] = 0.0432*0.4*0.5= 0.00864    
+【第三天】【清理】= [初始概率,晴天,晴天] * [转移概率,M=&gt;晴天] * [发射概率,清理] = 0.0432*0.6*0.1= 0.00259   
+【第三天】【清理】= [初始概率,下雨,下雨] * [转移概率,M=&gt;下雨] * [发射概率,清理] = 0.0168*0.7*0.5= 0.00588  
+【第三天】【清理】= [初始概率,下雨,下雨] * [转移概率,M=&gt;晴天] * [发射概率,清理] = 0.0168*0.3*0.1= 0.00050  
+【第三天】【清理】= [初始概率,下雨,晴天] * [转移概率,M=&gt;下雨] * [发射概率,清理] = 0.0054*0.4*0.5= 0.00108  
+【第三天】【清理】= [初始概率,下雨,晴天] * [转移概率,M=&gt;晴天] * [发射概率,清理] = 0.0054*0.6*0.1= 0.00032   
+从这里就能看出，累积概率最大值为0.01344，所以全局最优解：第一天<strong>晴天</strong>；第二天 <strong>下雨</strong>；第三天 <strong>下雨</strong>  
+<strong>注：若认为第二天应该是晴天的同学，请区分全局最优解和局部最优解</strong></p>
+
+<h2 id="span-stylecolor008b8bpythonspan"><strong><span style="color:#008B8B">Python程序实现</span></strong></h2>
+
+<pre><code class="language-python"># Python -version 3.5以上版本
+
+# 打印路径概率表
+def print_dptable(V):
+    print ("    ",)
+    for i in range(len(V)):
+        print ("%7d" % i,)
+    print ()
+    for y in V[0].keys():
+        print ("%.5s: " % y,)
+        for t in range(len(V)):
+            print ("%.7s" % ("%f" % V[t][y]),)
+        print ()
+
+def viterbi(obs, states, start_p, trans_p, emit_p):
+    # 路径概率表 V[时间][隐含层] = 概率
+    V = [{}]
+    # 中间变量
+    path = {}
+    # 状态初始化 (t == 0)
+    for y in states:
+        V[0][y] = start_p[y] * emit_p[y][obs[0]]
+        path[y] = [y]
+    # 对 t &gt; 0 跑一遍维特比算法
+    for t in range(1, len(obs)):
+        V.append({})
+        newpath = {}
+        for y in states:
+            # 概率 隐含层 =  前状态是y0的初始概率 * y0转移到y的转移概率 * y表现为当前状态的发射概率
+            (prob, state) = max([(V[t - 1][y0] * trans_p[y0][y] * emit_p[y][obs[t]], y0) for y0 in states])
+            # 记录最大概率
+            V[t][y] = prob
+            # 记录路径
+            newpath[y] = path[state] + [y]
+        path = newpath
+    print_dptable(V)
+    (prob, state) = max([(V[len(obs) - 1][y], y) for y in states])
+    return (prob, path[state])
+
+# HMM 实例导入
+states = ('Rainy', 'Sunny')
+observations = ('walk', 'shop', 'clean')
+start_probability = {'Rainy': 0.6, 'Sunny': 0.4}
+transition_probability = {
+    'Rainy': {'Rainy': 0.7, 'Sunny': 0.3},
+    'Sunny': {'Rainy': 0.4, 'Sunny': 0.6},
+}
+emission_probability = {
+    'Rainy': {'walk': 0.1, 'shop': 0.4, 'clean': 0.5},
+    'Sunny': {'walk': 0.6, 'shop': 0.3, 'clean': 0.1},
+}
+
+def example():
+    #将实例值传输到viterbi函数
+    return viterbi(observations,
+                   states,
+                   start_probability,
+                   transition_probability,
+                   emission_probability
+                   )
+print (example())
+</code></pre>
+
+<h2 id="span-stylecolor008b8bpythonspan-1"><strong><span style="color:#008B8B">Python程序结果</span></strong></h2>
+
+<pre><code class="language-shell">         第1天    第2天   第3天
+Rainy:  0.06000 0.03840 0.01344
+Sunny:  0.24000 0.04320 0.00259
+
+第3天最大概率值及预测结果：
+(0.01344, ['Sunny', 'Rainy', 'Rainy'])
+</code></pre>
+
+<p><strong>参考文献：</strong>   
+<a href="http://www.hankcs.com/nlp/hmm-and-segmentation-tagging-named-entity-recognition.html">- HMM与分词、词性标注、命名实体识别</a></p>
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/anlp/" style="background-color:#242A3A">自然语言处理</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/bmarchine/2017/08/30/ml02/">
+            Python机器学习算法之逻辑回归
+            <small>30 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/19/nlp02/">
+            文本分类器构建方法及程序设计
+            <small>19 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ynews/2017/08/01/news06/">
+            机器学习如何助力银行挖掘更多的客户价值
+            <small>01 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

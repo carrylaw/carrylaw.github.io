@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      文本分析与机器学习的良性结合 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<h3 class="masthead-title">
+					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+			        </h3>
+				<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">文本分析与机器学习的良性结合</h1>
+  <span class="post-date">15 May 2017</span>
+  <div><p>  据统计，世界上大约有80%的数据源都是非结构化的，例如，博客文章、评论日志、呼叫中心的语音文本等。由于非结构化数据并不是以行列的形式记录到数据库中，那么诸如线性回归等传统的数据分析算法对于这类数据并不适用，由此我们需要用到文本分析技术来解决如何挖掘非结构数据等相关问题。随着近几年技术的发展，文本分析已经到达一个比较成熟的水平，并且被广泛运用到各个领域。Gartner在“大数据炒作周期”报告中，明确指出文本分析是近两到五年内能够产生巨大商业价值的主流技术，虽然现阶段单独对非结构化数据进行挖掘已经能够发现大量的商业机会，但如果将文本分析与机器学习相结合，即对非结构化与结构化数据进行联合挖掘，将产生更多的商业价值。</p>
+
+<div align="center">
+<img width="500" height="300" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai1.jpg" />
+</div>
+
+<h2 id="span-stylecolor008b8b-cfpbspan"><strong><span style="color:#008B8B;">· CFPB的数据分析案例</span></strong></h2>
+
+<p>  消费者金融保护局（CFPB）曾经就利用文本分析搭配机器学习的方法来探索自身的数据情况。他们的数据主要记录了客户对银行、信用卡公司和其他金融服务公司的投诉，其中包括客户信息、产品信息等结构化数据以及客户评论、语音文本等非结构化的数据。该分析方法首先使用文本分析技术来识别CFPB收集的自由形式数据中的负面情绪，然后利用机器学习算法建立一个预测模型，用来分析负面情绪程度与客户是否收到违规银行补偿，这两个变量之间的关系。研究结果表明，客户得到补偿与负面情绪之间确实存在相关性，当客户在CFPB的评论中表现出较强的负面情绪，违规银行很大概率上会针对这部分客户进行补偿，特别是当有客户使用“偷”或者与之类似的词语时，其获得补偿的概率会更大。    
+  这项数据分析工作展示了文本分析和机器学习结合的力量，一旦文本分析被引入机器学习的预测模型中，该模型就能在发现行为模式的同时，回答为什么会产生这种行为模式，以及如何解决这种行为模式所带来的问题。SAS公司的数据分析总监Sabo曾经说过：“所有的文本分析都是在没有数据结构的情况下生成数据结构，当你能够利用机器学习对结构化数据进行建模预测时，加入文本分析产生意想不到的效果。”</p>
+
+<h2 id="span-stylecolor008b8b-span"><strong><span style="color:#008B8B;">· 文本分析技术之情绪分析</span></strong></h2>
+
+<p>  正如CFPB中利用文本分析发现客户情绪的案例，在文本分析领域中理解客户的想法和感觉的技术，通常被称为情绪分析。这里文本分析技术的实现是基于自然语言处理（NLP），文本分析中最有希望也是最具挑战性的领域之一就是要使用自然语言处理来了解客户在使用一组单词时真正意义上的含义。例如，“这是伟大的”总是积极的？如果文字读到“你一直非常有帮助”，那是一个真正和发光的评论还是一个愤世嫉俗的反驳？通常，我们人类喜欢以暧昧，模糊的语言来表达自己的情感。随着越来越多的客户互动通过电子邮件、聊天和短信，而不是电话或面对面的讨论，我们失去了来自语音音调和表情特征等重要的线索。然而情绪分析能够借助前沿的数据分析技术来寻找语言的微妙之处。</p>
+
+<div align="center">
+<img width="500" height="300" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai2.jpg" />
+</div>
+
+<h2 id="span-stylecolor008b8b-span-1"><strong><span style="color:#008B8B;">· 其他文本分析技术的涌现</span></strong></h2>
+
+<p>  <strong>文件术语矩阵(DTM)</strong> 列出了我们正在挖掘的文本中所有的唯一术语。这种简单但通常非常大的中间结果为进一步分析提供了基础。例如在产品销售环节，特定术语基于一定频次的出现是否会对客户的购买行为产生影响？这时我们会根据信号强度对从最弱到最强的正式建模的单词或短语进行排序。这些提取出的单词和短语的频率可以在我们的建模数据集中的新列中以数字表示，并且直接并入到搜索最佳的预测模型中。    
+  <strong>命名实体提取(NEE)</strong> 是基于自然语言处理，借鉴了计算机科学，人工智能和语言学的学科。通过分析文本的结构，NEE能够识别出文本哪些部分可能代表诸如人员，地点，组织，职称，产品，货币金额，百分比，日期和时间等实体。对于每个识别的实体，NEE算法生成一个表示识别正确概率的分数。因此，我们的数据科学家可以设计概率阈值，例如，只有那些得分高于80％的实体，在创建结构化特征和将该特征包含在预测模型中。    
+  <strong>主题模型(LDA)</strong> 能够有效分割和检测客户行为变化，用于查找能够进行分类和分组的数据中的相似性。这种灵活的技术通常用于营销中，为具有相似存款，取款和购买行为的客户生成原型，并且可以应用于呼叫中心客户来电的分类。在后一种情况下，我们可以确定客户呼叫的有意义的原因，并使用这些见解更好地预测损耗风险，以更准确地预测电话量，甚至改进产品的功能和结构。</p>
+
+<p>  随着与客户相关文本数据量的不断扩大，企业必须将一系列文本分析技术融入到机器学习算法中。现阶段文本分析还存在着巨大的尚未开发的价值和潜在的市场竞争优势，相信在不久的将来，结合文本分析和机器学习所实现的智能项目，将在我们的生活中变得触手可及。</p>
+
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/ynews/" style="background-color:#242A3A">相关资讯</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/bmarchine/2017/08/30/ml02/">
+            Python机器学习算法之逻辑回归
+            <small>30 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/19/nlp02/">
+            文本分类器构建方法及程序设计
+            <small>19 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/09/nlp01/">
+            HMM隐马尔可夫模型的实例
+            <small>09 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

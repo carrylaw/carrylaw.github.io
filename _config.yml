@@ -1,0 +1,77 @@
+# use collections to realize category
+collections:
+  my_categories:
+    output: true
+    permalink: /blog/category/:name/
+  my_tags:
+    output: true
+    permalink: /blog/tag/:name/  
+#sidebar names
+sidebar:
+  home:              主页
+  about:             关于
+  articles:          博文馆
+
+#navbar names
+#navbar:
+#  jian:              简
+#  jianshu:           简书
+  
+# Permalinks
+permalink:           pretty
+
+# Conversion
+markdown:    kramdown
+highlighter: rouge
+excerpt_separator: "\n\n\n"
+
+# Setup
+title:               数分学长
+name:                carrylaw
+namecn:              数分学长
+tagline:             '的博客'
+description:         "Carry.law"
+url:                 https://carrylaw.github.io
+baseurl:             ''
+gems:
+  - jekyll-feed
+  - jekyll-seo-tag
+
+# About/contact
+author:
+  name:              carrylaw
+  url:               https://carrylaw.github.io
+  email:             hbwhfeifei@qq.com
+
+sass:
+  style: compressed
+
+defaults:
+  -
+    scope:
+      path: ""
+      type: pages
+    values:
+      layout: page
+  -
+    scope:
+      path: ""
+      type: posts
+    values:
+      layout: post
+  -
+    scope:
+      path: ""
+      type: my_categories
+    values:
+      layout: blog_by_category
+  
+  -
+    scope:
+      path: ""
+      type: my_tags
+    values:
+      layout: blog_by_tag
+    
+# Custom vars
+version:             1.1.0

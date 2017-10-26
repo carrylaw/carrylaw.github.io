@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      文本分类器构建方法及程序设计 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<h3 class="masthead-title">
+					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+			        </h3>
+				<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">文本分类器构建方法及程序设计</h1>
+  <span class="post-date">19 Aug 2017</span>
+  <div><p>  <strong>自然语言处理（NLP）</strong>很基础的一块便是构建文本分类器，其应用领域也比较广泛，例如新闻题材、垃圾邮件的自动分类等。现阶段构建文本分类器的算法大致包括：朴素贝叶斯、SVM支持向量机、最大熵分类器和BP神经网络等。本文选取SVM算法对某银行客服录音数据进行分类，分类方法及程序设计如下：</p>
+
+<p><strong>注：在构建文本分类器之前，请先确定配备以下环境    
+Python 3.5及以上版本   
+jieba分词包
+详情请见:</strong> <a href="https://carrylaw.github.io/anlp/2017/06/11/nlp03/">python之结巴中文分词</a></p>
+
+<h2 id="span-stylecolor008b8b-span"><strong><span style="color:#008B8B">· 数据预处理方法论</span></strong></h2>
+
+<p>1.导入原始语料（存储格式：TXT，utf-8）   
+ <a href="https://github.com/carrylaw/Archive/tree/master/NLP文件夹/SVM预处理输入">原始语料下载地址</a> 
+&lt;div align="center"&gt;
+<img width="300" height="180" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai4.png" />
+&lt;/div&gt;    
+2.样本整理
+&lt;div align="center"&gt;
+<img width="80%" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai7.png" />
+&lt;/div&gt;   
+3.导入停用词库和自定义词库    
+ <a href="https://github.com/carrylaw/Archive/tree/master/NLP文件夹/lexicon">停用词库和自定义词库下载地址</a>
+&lt;div align="center"&gt;
+<img width="400" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai5.png" />
+&lt;/div&gt;       
+4.文本分词：   
+- 删除第1行和最后2行语句（规范话术）     
+- 去除停用词   
+- 添加自定义词典   
+- 结巴分词（精确模式）   
+ <strong>清洗目的：</strong>   
+ 1）避免无意义词汇的出现，干扰后续TF-IDF词频提取的准确度    
+ 2）降低SVM支持向量机分类计算时的空间复杂度 
+&lt;div align="center"&gt;
+<img width="95%" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai6.png" />
+&lt;/div&gt;    </p>
+
+<h2 id="span-stylecolor008b8b-span-1"><strong><span style="color:#008B8B">· 数据预处理程序设计</span></strong></h2>
+
+<pre><code class="language-python">import jieba
+import jieba.analyse
+
+#添加自定义词典
+jieba.load_userdict('e:\\lexicon\\CBwords.txt')
+
+# 创建停用词列表函数
+def creadstoplist(stopwordspath):
+    stwlist = [line.strip() for line in open(stopwordspath, 'r', encoding='utf-8').readlines()]
+    return stwlist
+
+# 对句子进行分词
+def seg_sentence(sentence):
+    wordList = jieba.cut(sentence.strip())
+    stwlist = creadstoplist('e:\\lexicon\\CBstopwords.txt') #加载停用词路径
+    outstr = ''
+    for word in wordList:
+        if word not in stwlist:
+                if word != '\t':
+                    outstr += word
+                    outstr += " "
+    return outstr
+
+#删除第1行和最后3行语句
+infile = open('e:\\SVM预处理输入\\in1.txt', 'r', encoding='utf-8')
+line_new = infile.readlines() #注意readline 和readlines
+infile_new = ''.join(line_new[1:-3]) 
+outfile_new = open("e:\\new.txt","w",encoding='utf-8')
+outfile_new.write(infile_new)
+infile.close()
+outfile_new.close()
+
+#结果输出到txt文件夹中
+infile_new1 = open("e:\\new.txt","r",encoding='utf-8')
+outfile = open('e:\\SVM预处理输出\\outfile1.txt', 'w', encoding='utf-8')
+for line in infile_new1:
+    line_seg = seg_sentence(line)
+    outfile.write(line_seg+'\n')
+infile_new1.close()
+outfile.close()
+
+import jieba
+import jieba.analyse
+
+#添加自定义词典
+jieba.load_userdict('e:\\lexicon\\CBwords.txt')
+
+# 创建停用词列表函数
+def creadstoplist(stopwordspath):
+    stwlist = [line.strip() for line in open(stopwordspath, 'r', encoding='utf-8').readlines()]
+    return stwlist
+
+# 对句子进行分词
+def seg_sentence(sentence):
+    wordList = jieba.cut(sentence.strip())
+    stwlist = creadstoplist('e:\\lexicon\\CBstopwords.txt') #加载停用词路径
+    outstr = ''
+    for word in wordList:
+        if word not in stwlist:
+                if word != '\t':
+                    outstr += word
+                    outstr += " "
+    return outstr
+
+#删除第1行和最后3行语句
+infile = open('e:\\SVM预处理输入\\in1.txt', 'r', encoding='utf-8')
+line_new = infile.readlines() #注意readline 和readlines
+infile_new = ''.join(line_new[1:-3]) 
+outfile_new = open("e:\\new.txt","w",encoding='utf-8')
+outfile_new.write(infile_new)
+infile.close()
+outfile_new.close()
+
+#结果输出到txt文件夹中
+infile_new1 = open("e:\\new.txt","r",encoding='utf-8')
+outfile = open('e:\\SVM预处理输出\\outfile1.txt', 'w', encoding='utf-8')
+for line in infile_new1:
+    line_seg = seg_sentence(line)
+    outfile.write(line_seg+'\n')
+infile_new1.close()
+outfile.close()
+</code></pre>
+
+<h2 id="span-stylecolor008b8b-svmspan"><strong><span style="color:#008B8B">· SVM自动分类器方法论</span></strong></h2>
+
+<p>1.导入数据集（存储格式：CSV）    
+ <a href="https://github.com/carrylaw/Archive/blob/master/NLP文件夹/test1.csv">预处理后数据集下载地址</a>
+&lt;div align="center"&gt;
+<img width="300" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai8.png" />
+&lt;/div&gt;   
+ Num表示id号（随意编排）    
+ Content表示数据预处理后文本内容    
+ Lable表示文本内容所对应的分类标签    
+2.划分为训练集和测试集A   
+3.转化为词频向量化矩阵，并计算TF-IDF值   
+4.训练SVM文本分类器   
+5.测试分类结果   
+6.计算精确度   
+7.稳健性检验   
+ 检验目的：提高文本分类器可信度   
+ 检验方法分别为以下两种：   
+ 1）训练集不变，将测试集A替换成测试集B，由此预测测试集B的分类结果     
+ 2）训练集与测试集A进行同类别相互替换，由此重新训练并预测分类器结果     
+8.整理预测结果
+&lt;div align="center"&gt;
+<img width="80%" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_nlp/sucai16.png" />
+&lt;/div&gt;  
+ label 人工分类标签   
+ predict 分类器预测标签</p>
+
+<h2 id="span-stylecolor008b8b-svmspan-1"><strong><span style="color:#008B8B">· SVM自动分类器程序设计</span></strong></h2>
+
+<pre><code class="language-python">import csv
+import numpy as np
+from sklearn.feature_extraction.text import CountVectorizer
+from sklearn.feature_extraction.text import TfidfTransformer
+from sklearn.svm import SVC
+from sklearn.pipeline import Pipeline
+from sklearn import metrics
+from sklearn.grid_search import GridSearchCV
+
+# 1.读取训练集
+def readtrain():
+    with open('e:\\test1.csv', 'r') as csvfile: 
+        reader = csv.reader(csvfile)
+        column1 = [row for row in reader]
+    content_train = [i[1] for i in column1[1:]] #第一列为文本内容，并去除列名
+    opinion_train = [i[2] for i in column1[1:]] #第二列为分类标签，并去除列名
+    print ('数据集共有 %s 条句子' % len(content_train)) 
+    train = [content_train, opinion_train]
+    return train
+
+def changeListCode(b):
+    a = []
+    for i in b:
+        a.append(i.decode('utf8'))
+    return a
+train = readtrain() #读取readtrain数据集
+content = train[0] #第一行文本内容赋给content
+opinion = train[1] #第二行分类标签赋给opinion
+
+# 2.划分训练集与测试集
+train_content = content[:85]  #训练集文本内容
+test_content = content[85:]   #测试集文本内容
+train_opinion = opinion[:85]  #训练集分类标签
+test_opinion = opinion[85:]   #测试集分类标签（用于计算精确度）
+
+# 3.文本向量化
+vectorizer = CountVectorizer() #将向量化函数赋给vectorizer
+tfidftransformer = TfidfTransformer()
+tfidf = tfidftransformer.fit_transform(vectorizer.fit_transform(train_content))  # 先转换成词频矩阵，再计算TFIDF值
+print (tfidf.shape)
+
+# 4.训练文本分类器
+text_clf = Pipeline([('vect', CountVectorizer()), ('tfidf', TfidfTransformer()), ('clf', SVC(C=0.99, kernel = 'linear'))])
+text_clf = text_clf.fit(train_content, train_opinion)
+
+# 5.预测文本分类结果
+predicted = text_clf.predict(test_content)
+print ("打印预测结果：")
+print (predicted) #打印预测分类结果
+
+# 6.计算精确度
+print ("============================================")
+print ("计算预测结果精确度")
+print ('SVC',np.mean(predicted == test_opinion))
+</code></pre>
+
+<h2 id="span-stylecolor008b8b-svmspan-2"><strong><span style="color:#008B8B">· SVM自动分类器预测结果</span></strong></h2>
+
+<pre><code class="language-shell">打印预测结果：
+['手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额'
+ '手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额'
+ '手机银行-安全工具-交易限额' '手机银行-安全工具-交易限额' '手机银行-安全工具-设备绑定与解绑' '手机银行-转账汇款-无法转账'
+ '手机银行-账户管理-关联账户' '手机银行-账户管理-关联账户' '手机银行-账户管理-关联账户' '手机银行-账户管理-关联账户'
+ '手机银行-账户管理-关联账户' '手机银行-账户管理-关联账户' '手机银行-账户管理-关联账户' '手机银行-账户管理-关联账户'
+ '手机银行-账户管理-关联账户' '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-款项未到账'
+ '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-无法转账' '手机银行-转账汇款-款项未到账'
+ '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-无法转账'
+ '手机银行-转账汇款-无法转账' '手机银行-转账汇款-无法转账' '手机银行-转账汇款-无法转账' '手机银行-转账汇款-无法转账'
+ '手机银行-转账汇款-款项被退回' '手机银行-转账汇款-款项未到账' '手机银行-转账汇款-款项被退回' '手机银行-转账汇款-款项被退回']
+============================================
+计算预测结果精确度
+SVC 0.9
+</code></pre>
+
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/anlp/" style="background-color:#242A3A">自然语言处理</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/bmarchine/2017/08/30/ml02/">
+            Python机器学习算法之逻辑回归
+            <small>30 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/09/nlp01/">
+            HMM隐马尔可夫模型的实例
+            <small>09 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/ynews/2017/08/01/news06/">
+            机器学习如何助力银行挖掘更多的客户价值
+            <small>01 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

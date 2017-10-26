@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      机器学习如何助力银行挖掘更多的客户价值 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<h3 class="masthead-title">
+					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+			        </h3>
+				<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">机器学习如何助力银行挖掘更多的客户价值</h1>
+  <span class="post-date">01 Aug 2017</span>
+  <div><p>  关于机器学习对银行业影响的研究自20世纪以来，已经持续了很长一段时间，但一直没有获得过重大的突破。直到大数据技术的实现，摆脱了传统数据存处理技术对计算机硬件要求的枷锁，机器学习才真正在银行业务中发挥出了其实战作用，例如信用风险管理等。</p>
+
+<div align="center">
+<img width="300" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai13.png" />
+</div>
+
+<p>  <strong>机器学习（Marchine Learning）</strong>听起来比较复杂，很有未来感，但其实它的工作原理很简单。简单来说，机器学习就是结合大量类似于决策树的决策模型，来创建一个更加精确的模型。通过快速地对这些决策模型进行迭代训练，机器学习能够找到“隐藏”的最优解，特别是在统计模型中经常遗漏的非结构化数据。</p>
+
+<h2 id="span-stylecolor008b8b-span"><strong><span style="color:#008B8B;">· 机器学习在银行业中的应用</span></strong></h2>
+
+<div align="center">
+<img width="400" height="250" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai14.png" />
+</div>
+
+<p>  银行投资组合中经常会出现<strong>长尾数据</strong>，相对于传统的统计方法，机器学习对长尾数据的解释力更强。考虑到那些个体投资较少但总体数量庞大的客户，我们通常对这一群体的客户知之甚少，并且他们也是相当被动的接受银行业务。但是，机器学习能够对这类客户的行为进行很好的分析，从而指导业务人员有针对性的挖掘潜在的盈利目标。    
+  举一个机器学习在银行业信用卡产品线中<strong>实际应用的案例</strong>，该银行的目标是针对每个客户寻求最优的信用额度，简单来说就是他们希望知道能够在哪些方面增加或减少信用额度。现有统计模型虽然已经具有了相当可观的预测能力，但当利用机器学习方法去重新训练与之相同的数据集，并在训练时添加一些诸如政策规定等非结构化数据时，模型的预测能力直接提高了1.6倍。这种改进能够从基于现有模型中风险较低的客户手中获得显著收益，由此会导致信用额度下降，并且会避免因为信用额度增加而导致的额外损失。</p>
+
+<h2 id="span-stylecolor008b8b-span-1"><strong><span style="color:#008B8B;">· 机器学习应用的局限性及解决方案</span></strong></h2>
+
+<p>  那么，是什么导致了银行业并没有更广泛地采用机器学习方法呢？通常来说，有以下三个方面的问题：首先，变量规模的扩大会使得当前的银行系统需要更多的资金进行研发和维护；其次，机器学习中许多模型都是一个黑盒子，以至于造成了预测结果的不可解释性，这严重触犯了银行业的稳定规范；最后，机器学习准确性的检验比较复杂，因此使用机器学习方法在验证环节具有一定的挑战。
+  尽管机器学习方法具有诸如此类的问题，但也有一些切实可行的办法来弱化这些问题。例如，直接使用现有所有可用的变量开始建模，根据每个变量对模型的贡献率快速地进行筛选，从而在不影响模型预测精度的前提下，留下一批可受控制的变量；或者是减少机器学习模型中的一些“分支”，从而获得一组核心的线性规则，这些规则所使用的变量更少，但同时还保留了原模型80%以上的预测能力。</p>
+
+<div align="center">
+<img width="300" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai15.png" />
+</div>
+
+<p>  关于银行业是否能够用更复杂的机器学习模型来获取更多的价值？这个答案是肯定的，并且也是未来银行业发展的一个趋势。机器学习通过利用银行业现有模型所忽略的大量的“小”数据，加上内外部监管系统中常见的非结构化数据，从而能够更深入的了解潜在客户需求，帮助银行挖掘更多的客户价值。</p>
+
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/ynews/" style="background-color:#242A3A">相关资讯</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/bmarchine/2017/08/30/ml02/">
+            Python机器学习算法之逻辑回归
+            <small>30 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/19/nlp02/">
+            文本分类器构建方法及程序设计
+            <small>19 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/anlp/2017/08/09/nlp01/">
+            HMM隐马尔可夫模型的实例
+            <small>09 Aug 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>
