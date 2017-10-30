@@ -1,0 +1,404 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Python基础之数据类型（待更新ing） &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">Python基础之数据类型（待更新ing）</h1>
+  <span class="post-date">25 Oct 2017</span>
+  <div><div align="center">
+<img width="500" height="150" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_py/jp8.jpg" />
+</div>
+
+<p>问题： 10,011,101这样一个数据该如何解释？    
+回答： 可以是1个二进制数字，1个十进制数字，一段文本，或者是逗号分割的3个数字···  
+但诸如Python、Java等程序设计语言中，不允许存在<strong>语法歧义</strong>，因此在输入数据时需要明确说明数据的含义，即标记<strong>数据类型</strong>。  </p>
+
+<p>Python主要包含以下6种数据类型：    
+·数字类型  ·字符串类型   
+·元组类型  ·列表类型   
+·文件类型  ·字典类型   </p>
+
+<h2 id="span-stylecolor008b8b-span"><strong><span style="color:#008B8B;">· 数字类型</span></strong></h2>
+<p>Python包含3种数字类型
+·整数类型 int()
+·浮点数类型 float()
+·复数类型 complex()   </p>
+
+<p>问题1：整数、浮点数、复数之间是怎样的关系？   
+回答1：复数==去除虚数部分==&gt;浮点数==去除小数部分==&gt;整数，因此整数是浮点数特例，浮点数是复数特例。    </p>
+
+<p>问题2：不同数据类型之间混合运算的结果？    
+回答2：运算后结果为最宽的数字类型，例：整数+浮点数=浮点数</p>
+
+<p>问题3：数字类型之间能否相互转化？          
+回答3：整数与浮点数之间能够相互转化，但复数只能单向转化，例如：</p>
+
+<pre><code class="language-python">#正确示例
+int(4.5)    #输出结果：4
+float(4)    #输出结果：4.0
+complex(4)  #输出结果：4+0j
+#错误示例
+float(4+0j) #输出结果：错误！
+</code></pre>
+
+<p>问题4：如何判断数字类型？       
+回答4：利用type()函数，例：type(4.5) 输出结果：float</p>
+
+<h2 id="span-stylecolor008b8b-span-1"><strong><span style="color:#008B8B;">· 字符串类型</span></strong></h2>
+<p>Python字符串是用”双引号”或者’单引号’括起来的字符组，例如：
+<code>python
+str1 = "Hello"
+str2 = 'World'
+print(str1+" "+str2)
+#输出结果
+Hello World
+</code>
+Python语言转义符: \
+<code>python
+print("\"Hello World\"") 
+#输出结果        
+"Hello World"
+print("Hello\nWorld") #\n表示换行
+#输出结果
+Hello  
+World
+</code>
+Python截取字符串
+<code>python
+print("Hello World"[0:3]) #"string"[start:end]
+#字符截取从start开始直到end结束，但不包括end位置，即[0:3]输出编号为0,1,2
+#输出结果
+Hel
+</code>
+Python返回字符串长度len()函数
+<code>python
+len("Hello world")
+#输出结果
+11
+</code>
+Python字符串类型转化str()函数
+<code>python
+str(123.456) #输出结果：'123.456'
+type(str(123.456)) #输出结果：str
+</code>
+Python字符串使用实例
+<code>python
+# month.py
+weeks = "MonTueWenThuFriSatSun"
+n = input("请输入星期数(1-7):")
+pos = (int(n)-1) * 3 
+#星期一 pos=0,星期二 pos=3,星期三 pos=6以此类推
+weekAbbrev = weeks[pos:pos+3]
+print("星期几简写是:" + weekAbbrev)
+</code></p>
+
+<h2 id="span-stylecolor008b8b---span"><strong><span style="color:#008B8B;">· 元组类型 和 列表类型</span></strong></h2>
+
+<p>问题1 ：元组类型和列表类型分别是什么样？     
+回答1a：元组中元素之间用逗号分隔，可加（）也可以不加，具体请见:Python元组类型的操作。例：t1=(123,456,”hello”)          
+回答1b：列表中元素之间同样用逗号分隔，必须加[ ]。例：t2=[123,456,”hello”]</p>
+
+<p>问题2 ：元组类型和列表类型之间的相同点和不同点？                   
+回答2a：相同点：元组和列表中的元素类型可以不一样；可以采用索引形式获取元组和列表中的元素。                        
+回答2b：不同点：定义好的元组不可修改，但列表可随时修改且没有大小限制。              </p>
+
+<p>Python元组类型的操作
+``` python
+t1 = 123,456,”hello”
+t2 = (123,456,”hello”)
+t3 = 123,(456,”hello”)
+print(t1[1])
+print(t2[1])
+print(t3[1]) #(456,”hello”)为一个元素</p>
+
+<h1 id="section">输出结果</h1>
+<p>456
+456
+(456, ‘hello’)
+```</p>
+
+<p>Python列表类型的操作
+``` python
+# ==== 列表运算操作 ====
+m1 = [123,456,”hello”]
+m1*2 
+len(m1[0:]) #计算列表中元素个数
+for i in m1[0:]: #遍历列表中所有元素
+    print(i)
+123 in m1 #判断列表中是否包含某个元素</p>
+
+<h1 id="section-1">注：上述程序分条运行</h1>
+<p>#输出结果
+[123, 456, ‘hello’, 123, 456, ‘hello’]
+3   #len()函数
+123 #循环语句
+456
+hello
+True #条件判断</p>
+
+<h1 id="section-2">==== 列表修改操作 ====</h1>
+<p>#添加元素 
+m1.append(“中国”) #将元素X增加到列表的最后
+m1.insert(2,”中国”) #将元素X插入到2号位
+#元素排序
+m1.reverse() #将列表元素反转
+m1.sort() #将列表元素排序，注：混合列表无法排序
+#删除元素
+m1.remove(123) #删除列表中第一次出现的元素X
+m1.pop(2) #删除列表中2号位的元素</p>
+
+<h1 id="section-3">注：上述程序分条运行，测试代码如下</h1>
+<p>m1 = [123,456,”hello”]
+m1.append(“中国”) #分别替换“列表修改操作”代码条
+print(m1)
+#输出结果
+[123, 456, ‘hello’, ‘中国’]
+[123, 456, ‘中国’, ‘hello’]
+[‘hello’, 456, 123] #元素反转
+[456, ‘hello’]
+[123, 456]
+```</p>
+
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/cpython/" style="background-color:#242A3A">Python技术</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/27/py05/">
+            Python基础之程序设计结构
+            <small>27 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/24/py03/">
+            Python基础之print输出
+            <small>24 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/emysql/2017/10/23/sql07/">
+            PostgreSQL链接问题：psql：致命错误：用户"root" Ident认证失败
+            <small>23 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

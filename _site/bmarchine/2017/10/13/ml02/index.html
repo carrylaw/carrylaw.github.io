@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      Python机器学习算法之非线性回归 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">Python机器学习算法之非线性回归</h1>
+  <span class="post-date">13 Oct 2017</span>
+  <div><p>  非线性回归相较于线性回归而言，总带有一丢丢复杂的神秘感。关于线性回归模型相信各位已耳熟能详，因此这里主要讨论非线性回归模型。其实非线性回归中很大一部分是<strong>基于多项式的回归模型</strong>，即利用曲线方程代替直线方程拟合坐标图上各点，使得各点到曲线的距离总和最短。   
+  一元m次多项式回归方程为：
+&lt;div align="center"&gt;
+<img width="300" height="50" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_ml/sucai02.png" />
+&lt;/div&gt;
+  二元二次多项式回归方程为：
+&lt;div align="center"&gt;
+<img width="400" height="50" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_ml/sucai03.png" />
+&lt;/div&gt;
+  多项式回归的最大优点就是可以通过增加x的高次项对实测点进行逼近，直至满意为止。事实上，多项式回归可以处理很大一类非线性问题，它在分析中占有重要的地位，因为任何一个函数都可以分段用多项式来逼近。   
+  举一个房屋价格与房屋尺寸非线性拟合的实例，数据集下载地址：<a href="https://github.com/carrylaw/Archive/blob/master/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E6%96%87%E4%BB%B6%E5%A4%B9/linear/prices.txt">prices.txt</a></p>
+
+<h2 id="span-stylecolor008b8b-span"><strong><span style="color:#008B8B">· 算法构建代码</span></strong></h2>
+<pre><code class="language-python"># python -version 3.5+   
+import matplotlib.pyplot as plt    
+import numpy as np    
+from sklearn import linear_model   
+from sklearn.preprocessing import PolynomialFeatures   
+
+# 读取数据集
+datasets_X = [] #建立datasets_X储存房屋尺寸数据
+datasets_Y = [] #建立datasets_Y储存房屋成交价格数据
+fr = open('E:\\prices.txt', 'r', encoding='utf-8') #指定prices.txt数据集所在路径
+lines = fr.readlines() #读取一整个文件夹
+for line in lines: #逐行读取，循环遍历所有数据
+    items = line.strip().split(",") #变量之间按逗号进行分隔
+    datasets_X.append(int(items[0])) #读取的数据转换为int型
+    datasets_Y.append(int(items[1]))
+
+# 数据预处理
+length = len(datasets_X)
+datasets_X = np.array(datasets_X).reshape([length, 1]) #将datasets_X转化为数组
+datasets_Y = np.array(datasets_Y)
+minX = min(datasets_X) #以数据datasets_X的最大值和最小值为范围，建立等差数列，方便后续画图
+maxX = max(datasets_X)
+X = np.arange(minX, maxX).reshape([-1, 1])
+
+# 数据建模
+poly_reg = PolynomialFeatures(degree=2) #degree=2表示二次多项式
+X_poly = poly_reg.fit_transform(datasets_X) #构造datasets_X二次多项式特征X_poly
+lin_reg_2 = linear_model.LinearRegression() #创建线性回归模型
+lin_reg_2.fit(X_poly, datasets_Y) #使用线性回归模型学习X_poly和datasets_Y之间的映射关系
+</code></pre>
+
+<h2 id="span-stylecolor008b8b-span-1"><strong><span style="color:#008B8B">· 测试结果代码</span></strong></h2>
+<pre><code class="language-python"># 查看回归系数
+print('Coefficients:',lin_reg_2.coef_)
+# 查看截距项
+print('intercept:',lin_reg_2.intercept_)  
+
+# 数据可视化
+plt.scatter(datasets_X, datasets_Y, color='orange')   
+plt.plot(X, lin_reg_2.predict(poly_reg.fit_transform(X)), color='blue')   
+plt.xlabel('Area')   
+plt.ylabel('Price')   
+plt.show()   
+</code></pre>
+
+<h2 id="span-stylecolor008b8b-span-2"><strong><span style="color:#008B8B">· 部分结果展示</span></strong></h2>
+<pre><code class="language-shell">相关系数Coefficients: [  0.00000000e+00   4.93982848e-02   1.89186822e-05]     
+截距项intercept: 151.846967505     
+非线性回归公式：Y = 151.8470 + 4.9398e-02*x + 1.8919e-05*x^2
+</code></pre>
+<p>非线性拟合图：
+&lt;div align="center"&gt;
+<img width="400" height="250" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_ml/sucai01.png" />
+&lt;/div&gt;</p>
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/bmarchine/" style="background-color:#242A3A">机器学习实战</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/27/py05/">
+            Python基础之程序设计结构
+            <small>27 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/25/py04/">
+            Python基础之数据类型（待更新ing）
+            <small>25 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/24/py03/">
+            Python基础之print输出
+            <small>24 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

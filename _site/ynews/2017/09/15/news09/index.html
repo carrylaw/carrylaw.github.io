@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      基于图的机器学习技术 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">基于图的机器学习技术</h1>
+  <span class="post-date">15 Sep 2017</span>
+  <div><p>  近年来，机器学习技术的突飞猛进促使计算机系统能够解决现实世界中诸多复杂的问题。其中之一便是Google发布大规模的、基于图的机器学习平台，而这套技术正是我们日常使用的收件箱提醒、Allo智能信息回复、Google Photos图像识别等功能背后的技术工具之一。    
+  相对于需要经过大规模带标签的数据训练，才能够展现出其预测能力的“有监督”的机器学习方法，基于图的机器学习技术受到人类在已有知识（有标签数据）和全新未知结果（无标签数据）之间搭建学习桥梁的启发，使用称之为“半监督”学习的方法，使系统能够在稀疏数据集上进行训练，从而能够避免“有监督”学习中，对于每个新的任务都需要耗费大量的时间和精力去采集标签数据的问题。此外，基于图的半监督学习方法使得系统在学习的时候能够同时吸收带标签和不带标签的数据，这样有助于改善数据的底层结构，混合多种不同信号的特征，例如带有原始特征的知识图谱相关信息等。</p>
+
+<div align="center">
+<img width="400" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai21.png" />
+</div>
+
+<p>  基于图的机器学习算法核心就是构建图本身，由此我们需要定义节点、边、以及每条边的权重。在整个学习过程中，最主要的问题就是如何生成图以及连接方式的选择。图有各种各样的大小和形状，并且能够与多种不同的来源进行结合，Google所发布的基于图的机器学习平台正是抓住了这一痛点，能够直接从推断或已知的数据要素间关系中自动地生产图。为了更好的理解基于图的机器学习系统是如何运转的，本文列举以下的示例：</p>
+
+<div align="center">
+<img width="300" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai23.png" />
+<img width="300" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai24.png" />
+<img width="300" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai25.png" />
+</div>
+
+<p>  如图所示，灰色节点代表无标签数据，彩色节点代表有标签数据，节点数据之间的关系通过边表示，边的粗细程度代表边的权重，由此我们需要解决的问题是预测图表中每一个节点的颜色。基于图的机器学习技术最简单的实现原理，就是学习图像中每一个节点的颜色标签，相邻标签则依据相互之间链接的强度来分配与之相似的颜色。一个较为简洁的方法就是尝试一次性全部学完标签分配，但这种方法并不能拓展到大型的图上。另一个方法就是通过把标签节点的颜色传递给相邻节点，然后重复这一过程，从而不断的获得优化。通过第二种方法，我们可以升级每一个节点的标签，重复操作，直到整个图都是彩色的，而这一过程在优化相似的难题上也被证明是极其有效的。</p>
+
+<div align="center">
+<img width="400" height="200" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img/sucai22.png" />
+</div>
+
+<p>  现今，基于图的机器学习技术被应用到越来越多的领域中，例如自然语言处理中的情绪标记，金融领域中的反欺诈模型构建，当然还包括一些智能提醒、对话理解等应用。相信随着基于图的机器学习技术不断发展，在不久的将来，互联网规模膨胀的问题也将获得圆满的解决。</p>
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/ynews/" style="background-color:#242A3A">相关资讯</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/27/py05/">
+            Python基础之程序设计结构
+            <small>27 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/25/py04/">
+            Python基础之数据类型（待更新ing）
+            <small>25 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/24/py03/">
+            Python基础之print输出
+            <small>24 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>

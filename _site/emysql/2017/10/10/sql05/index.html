@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+	<head>
+  <link href="http://gmpg.org/xfn/11" rel="profile">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta http-equiv="content-type" content="text/html; charset=utf-8">
+
+  <!-- Enable responsiveness on mobile devices-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+
+  <title>
+    
+      MySQL基础讲义——SQL查询语句 &middot; 数分学长
+    
+  </title>
+
+  <!-- CSS -->
+  <link rel="stylesheet" href="/public/css/poole.css">
+  <link rel="stylesheet" href="/public/css/syntax.css">
+  <link rel="stylesheet" href="/public/css/lanyon.css">
+  <link rel="stylesheet" href="/public/css/minddust.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=PT+Serif:400,400italic,700%7CPT+Sans:400">
+
+  <!-- Icons -->
+  <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/public/apple-touch-icon-precomposed.png">
+  <link rel="shortcut icon" href="/public/favicon.ico">
+
+  <!-- RSS -->
+  <link rel="alternate" type="application/rss+xml" title="RSS" href="/atom.xml">
+	
+	<!--typeahead-->
+  <link rel="stylesheet" href="/public/css/jquery.typeahead.css">
+  <link rel="stylesheet" href="/public/css/style.css">
+  <script src="https://cdn.bootcss.com/jquery/2.1.0/jquery.min.js"></script>
+  <script src="https://cdn.bootcss.com/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+  <script src="/public/js/jquery.typeahead.js"></script>
+  <script src="/public/js/tools.js"></script>
+
+</head>
+
+
+	<body>
+
+		<!-- Target for toggling the sidebar `.sidebar-checkbox` is for regular
+     styles, `#sidebar-checkbox` for behavior. -->
+<input type="checkbox" class="sidebar-checkbox" id="sidebar-checkbox">
+
+<!-- Toggleable sidebar -->
+<div class="sidebar" id="sidebar">
+  <div class="sidebar-item">
+    <p><font size="5" color="darkgray" face="times new roman">Carry.law</font></p>
+	<p><font size="2" color="darkgray" face="微软雅黑">一枚最不像数分师的数据分析师</font></p>
+  </div>
+
+  <nav class="sidebar-nav">
+    <a class="sidebar-nav-item" href="/">主页</a>
+
+    
+
+    
+    
+      
+        
+      
+    
+      
+        
+      
+    
+      
+        
+          <a class="sidebar-nav-item" href="/about/">关于</a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+      
+    
+    <a class="sidebar-nav-item" id="articles" expanded='true'>博文馆</a>
+   	
+      
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
+    
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/ynews/">- 相关资讯</a>
+    
+    <span class="sidebar-nav-item">&copy; 2017. All rights reserved.</span>
+  </nav>
+</div>
+
+
+		<!-- Wrap is the content to shift when toggling the sidebar. We wrap the
+         content to avoid any CSS collisions with our real content. -->
+		<div class="wrap">
+			<div class="masthead">
+				<div class="container">
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
+					
+    					<a href="/" title="Home">数分学长</a>
+			            <small class="font-kt">的博客</small>
+    				
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
+	<ul class="text-xs-center">
+		<li>
+			<!--检索框-->
+			<form id="search-bar" action="/search" target="_blank" onsubmit="encodeKeyword()">
+	<div class="typeahead__container">
+		<div class="typeahead__field">
+
+			<span class="typeahead__query">
+                <input class="js-typeahead"
+                       name="q"
+                       type="search"
+                       autocomplete="off">
+            </span>
+			<span class="typeahead__button" hidden="hidden">
+                <button type="submit">
+                    <span class="typeahead__search-icon"></span>
+				</button>
+			</span>
+
+		</div>
+	</div>
+</form>    
+		</li>
+		<li><a href="#" id="search-btn" class="label label-darkblue tooltip" title="search"><span class="icon icon-search"></span></a></li>
+		<li class="site-name"><a href="/" class="label label-darkblue character">数分学长</a></li>
+		<li><a href="/atom.xml" class="label label-darkblue tooltip" title="RSS" target="_blank"><span class="icon icon-rss"></span></a></li>
+		<li><a href="https://github.com/carrylaw" class="label label-darkblue tooltip" title="GitHub" target="_blank"><span class="icon icon-github"></span></a></li>
+	</ul>
+</nav>
+
+<!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
+				</div>
+			</div>
+
+			<div class="container content">
+				
+<div class="post">
+	<!--setup categories-->  
+  
+  
+  
+	<!--setup categories end-->
+	
+	<!--setup tags--> 
+  
+	<!--setup tags end--> 
+  <h1 class="post-title">MySQL基础讲义——SQL查询语句</h1>
+  <span class="post-date">10 Oct 2017</span>
+  <div><h2 id="span-stylecolor008b8b-span"><strong><span style="color:#008B8B;">· 单表查询</span></strong></h2>
+<pre><code class="language-sql">select * from table_name;   
+where 条件查询   
+group by 分组查询   
+having 分组后筛选   
+order by 结果排序   
+-- 查询emp表中所有的行和列（emp表位于表管理单元测试中）   
+select * from emp;   
+-- 从表中检索部分的变量   
+select empno,ename,job,leader,hiredate,sal,comm,deptno from emp;   
+select empno as 员工编号,ename as 员工姓名,job as 职位,leader as 直属领导,hiredate as 雇用时间,sal as 薪水,comm as 津贴,deptno as 部门编号 from emp;   
+select empno 员工编号,ename 员工姓名,job 职位,leader 直属领导,hiredate 雇用时间,sal 薪水,comm 津贴,deptno 部门编号 from emp;   
+-- 查询去重   
+select distinct deptno from emp;
+
+---- 条件查询 ----    
+-- 从表中检索部分观测（大小写不敏感）   
+select * from emp where job='salesman';   
+-- 从表中查找空值   
+select * from emp where comm is null;   
+select * from emp where comm is not null;   
+-- 将空值转化为实际值   
+select coalesce(comm,0) from emp;   
+-- 多条件查询   
+select * from emp where deptno=10 or deptno=20;   
+select * from emp where deptno=10 or (deptno=20 and sal&lt;=2000);   
+-- 模糊查询   
+select * from emp where ename like 'a%';   
+select * from emp where ename like '%a%';   
+select * from emp where ename like '_a%';   
+
+---- 分组查询 ----  
+select deptno,sum(sal) from emp group by deptno;   
+select deptno,sum(comm) from emp group by deptno; #空值不计算   
+select deptno,sum(coalesce(comm,0)) from emp group by deptno; #空值变为0   
+select deptno,sum(sal) from emp where sal&gt;2000 group by deptno;   
+select deptno,job,sum(sal) from emp group by deptno,job;   
+---- 分组后筛选 ----  
+select deptno,job,sum(sal) from emp group by deptno,job having job = 'manager';    
+select deptno,job,sum(sal) from emp where job = 'manager' group by deptno,job; #where条件查询更快   
+-- 为什么还要having？    
+select deptno,job,sum(sal) from emp group by deptno,job having sum(sal)&gt;5000;   
+select deptno,job,new_sal from (select deptno,job,sum(sal) as new_sal from emp group by deptno,job) as a where new_sal&gt;5000;
+
+---- 结果排序 ----   
+select * from emp order by sal;   
+select * from emp order by sal desc;   
+select * from emp order by sal desc limit 5;   
+select deptno,job,sum(sal) as new_sal from emp group by deptno,job order by deptno,new_sal;   
+
+---- 逻辑操作符 ----   
+and,or 且，或   
+!=(&lt;&gt;) 不等于   
+is null 查询空值   
+like 模糊查询   
+between ... and ... (b&lt;=a&lt;c)   
+
+---- 逻辑表达式 ----     
+select ename,sal,
+case when sal&lt;= 2000 then '过低'   
+when sal&gt;= 4000 then '过高'   
+else '可行'   
+end as status   
+from emp;    
+</code></pre>
+
+<h2 id="span-stylecolor008b8b-span-1"><strong><span style="color:#008B8B;">· 多表查询</span></strong></h2>
+<p>创建测试表 a1、a2   
+&lt;div align="center"&gt;
+<img width="300" height="100" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_sql/sql17.png" />
+&lt;/div&gt;
+``` sql 
+create table a1(x int,y varchar(20));   
+create table a2(m int,n varchar(20));   
+insert into a1(x,y) values(1,”one”),(2,”two”),(2,”two”),(3,”three”);   
+insert into a2(m,n) values(1,”one”),(2,”two”),(4,”four”); </p>
+
+<p>—- 纵向查询（连接的观测值——行）—-    
+select * from a1   
+union   
+select * from a2;   
+– 加入条件语句   
+select x,y from a1 where x=1   
+union   
+select m,n from a2 where m=2   
+order by 1 desc;   
+– emp各部门工资排名前三的员工   
+(select deptno,ename,sal from emp where deptno=10 order by sal desc limit 3)   
+union   
+(select deptno,ename,sal from emp where deptno=20 order by sal desc limit 3)   
+union   
+(select deptno,ename,sal from emp where deptno=30 order by sal desc limit 3);   </p>
+
+<p>—- 横向连接（连接的是变量——列）  —-    
+– 内连接   
+select * from a1 inner join a2 on a1.x=a2.m;   
+select * from a1 join a2 on a1.x=a2.m;   
+select * from a1,a2 where a1.x=a2.m;   
+– 左连接   
+select * from a1 left join a2 on a1.x=a2.m;   
+– 右连接   
+select * from a1 right join a2 on a1.x=a2.m;   
+– 全连接（Mysql不支持）   
+select * from a1 full join a2 on a1.x=a2.m; # MySQL不支持   
+select * from a1 left join a2 on a1.x=a2.m   
+union   
+select * from a1 right join a2 on a1.x=a2.m; 
+```  </p>
+
+<h2 id="span-stylecolor008b8b-span-2"><strong><span style="color:#008B8B;">· 子查询</span></strong></h2>
+<p>创建测试表players,penalties
+&lt;div align="center"&gt;
+<img width="90%" height="40%" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_sql/sql18.png" />
+<img width="280" height="200" alt="图片名称" src="https://raw.githubusercontent.com/carrylaw/IMG/master/img_sql/sql19.png" />
+&lt;/div&gt;
+<code>sql
+---- 表 子查询from型 ---- 
+-- 获取编号小于10的男性球员的号码
+select playerno from players where playerno&lt;10 and sex='M';
+select playerno from (select playerno,sex from players where playerno&lt;10) as players10 where sex='m';
+---- 行 子查询where型 ----
+-- 获取和100号球员性别相同并且居住在同一城市的球员号码
+select playerno,sex,town from players where (sex,town)=(select sex,town from players where playerno=100);
+-- 获取和27号球员出生在同一年的球员的号码
+select playerno,birth_date from players where year(birth_date)=(select year(birth_date) from players where playerno = 27);
+select playerno,birth_date from players where year(birth_date)=1964; #需求转化
+---- 列 子查询 ----
+-- 1.实例（in）：获取球员性别为女的所有球员的球员号，名字及所在城市
+select playerno,name,town from players where playerno in (select playerno from players where sex="F");
+-- 2.实例（any）：获取至少比同城的另一球员年轻的所有球员的号码，日期和居住城市
+select playerno,birth_date,town from players as p1 where birth_date&gt; any(select birth_date from players as p2 where p1.town = p2.town); 
+-- 3.实例（all）：获取最老球员的号码，名字及生日。（即出生日期数值小于或等于所有其它球员的球员）
+select playerno,name,birth_date from players where birth_date&lt;= all(select birth_date from players); 
+---- exists型子查询 ----
+-- 1.实例（exists）：获取那些至少支付了一次罚款的球员的名字和首字母
+select name,initials from players where exists (select * from penalties where playerno = players.playerno);
+-- 2.实例（not exists）：获取那些从来没有罚款的球员的名字和首字母
+select name,initials from players where not exists (select * from penalties where playerno = players.playerno);
+</code></p>
+
+<h2 id="span-stylecolor008b8b-span-3"><strong><span style="color:#008B8B;">· 高级查询</span></strong></h2>
+<pre><code class="language-sql">---- 数字运算 ----
+-- 每个部门平均值、最小值、最大值、工资合计、部门人数、获得提成人数
+select deptno as 部门编号,
+       avg(sal) as 平均值,
+       min(sal) as 最小值,
+       max(sal) as 最大值,
+       sum(sal) as 工资合计,
+       count(ename) 部门人数,
+       count(comm) 获得提成人数
+from emp group by deptno;
+-- 每个部门人均提成的算法
+select deptno 部门编号,
+       avg(comm) 错误的人均提成算法,
+       avg(coalesce(comm,0)) 正确的人均提成算法
+from emp group by deptno;
+---- 日期运算 ----
+select hiredate as 聘用日期,
+       date_add(hiredate,interval 1 day) as 日期加一天,
+       date_add(hiredate,interval 1 month) as 日期加一月,
+       date_add(hiredate,interval -1 month) as 日期减一月
+from emp;
+---- 字符串运算 ----
+select substring(ename,1,4) from emp; #截取字符串
+select replace(ename,"smith","SMITH") from emp; #替换字符串
+select concat(job,sal) as data from emp; #字符与数字合并
+select convert(empno,signed) from emp;  #数字转字符
+---- 正则表达式 ----
+#Mysql大小写不敏感，binary属性让大小写敏感
+create table aa1(id int auto_increment primary key,data varchar(20) binary);
+insert into aa1(data) values ("123"),("abc"),("123abc"),("abc123");
+insert into aa1(data) values ("DeF456"),("456dEf");
+select data from aa1 where data regexp "[0-9]";
+select data from aa1 where data regexp "[a-z]";
+select data from aa1 where data regexp "def";
+select data from aa1 where data regexp "[De][Ee][Ff]";
+</code></pre>
+</div>	
+  <p class="m-t-3 text-muted font-helvetica">
+    <small> 分类: </small><a class="label" href="/blog/category/emysql/" style="background-color:#242A3A">数据库技术</a><small></small>
+  </p>
+</div>
+
+<div class="related">
+  <h2>Related Posts</h2>
+  <ul class="related-posts">
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/27/py05/">
+            Python基础之程序设计结构
+            <small>27 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/25/py04/">
+            Python基础之数据类型（待更新ing）
+            <small>25 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+      <li>
+        <h3>
+          <a href="/cpython/2017/10/24/py03/">
+            Python基础之print输出
+            <small>24 Oct 2017</small>
+          </a>
+        </h3>
+      </li>
+    
+  </ul>
+</div>
+
+			</div>
+		</div>
+
+		<label for="sidebar-checkbox" class="sidebar-toggle"></label>
+
+		<script>
+			(function(document) {
+				var toggle = document.querySelector('.sidebar-toggle');
+				var sidebar = document.querySelector('#sidebar');
+				var checkbox = document.querySelector('#sidebar-checkbox');
+
+				document.addEventListener('click', function(e) {
+					var target = e.target;
+					if(!checkbox.checked ||
+						sidebar.contains(target) ||
+						(target === checkbox || target === toggle)) return;
+
+					checkbox.checked = false;
+				}, false);
+				
+				var article = document.getElementById('articles');
+				var isExpanded = article.getAttribute('expanded');
+				var categoryName = document.getElementsByName('category-name');
+				article.addEventListener('click', function(e) {
+					if(isExpanded){
+						isExpanded = false;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-hide');
+						}					
+					}else{
+						isExpanded = true;
+						for (var i=0;i<categoryName.length;i++){
+							categoryName[i].setAttribute('class','sidebar-nav-item category-name-show');
+						}
+					}
+				}, false);
+			})(document);
+			$('#search-btn').on('click',function(){
+				$('#search-bar').submit();
+			});
+		</script>
+	<script src="/public/js/typeahead-custom.js"></script>
+	</body>
+
+</html>
