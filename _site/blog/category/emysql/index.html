@@ -87,9 +87,9 @@
       
 		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
     
-		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
     
-		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
     
 		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
     
@@ -105,14 +105,15 @@
 		<div class="wrap">
 			<div class="masthead">
 				<div class="container">
-					<h3 class="masthead-title">
-					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
 					
 						<a href="/blog/category/emysql/" title="Home">数据库技术</a>
 			            <small class="font-kt">分类文章</small>					    
     				
-			        </h3>
-				<nav class="nav-top">
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
 	<ul class="text-xs-center">
 		<li>
 			<!--检索框-->
@@ -144,6 +145,7 @@
 </nav>
 
 <!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
 				</div>
 			</div>
 
@@ -151,6 +153,559 @@
 				<div class="posts">
 
  
+ 	  <div class="post hidden">
+    <h1 class="post-title">
+      <a href="/emysql/2017/10/23/sql07/">
+        PostgreSQL链接问题：psql：致命错误：用户"root" Ident认证失败
+      </a>
+    </h1>
+    <span class="post-date" >23 Oct 2017</span>
+    <div class="post-content">
+         
+          
+
+
+1.初始化数据库    
+shell
+service postgresql initdb
+
+2.启动数据库   
+shell
+service postgresql start
+
+3.切换用户修改密码   
+shell
+su postgres
+psql
+alter user postgres with password '1234';
+\q
+
+4.修改认证文件/var/lib/pgsql/data/pg_hba.conf   
+shell
+vi /var/lib/pgsql/data/pg_hba.conf
+   
+把配置文件METHOD栏下方，修改为trust，从而解决用户Ident认证失败这个问题
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+5.重启postgresql服务器使设置生效
+shell
+service  postgresql  restart
+
+
+pg_hba.conf文件的完整代码如下：
+``` shell
+#=========================================
+# PostgreSQL Client Authentication Configuration File
+# ===================================================
+#
+# Refer to the “Client Authentication” section in the PostgreSQL
+# documentation for a complete description of this file.  A short
+# synopsis follows.
+#
+# This file controls: which hosts are allowed to connect, how clients
+# are authenticated, which PostgreSQL user names they can use, which
+# databases they can access.  Records take one of these forms:
+#
+# local      DATABASE  USER  METHOD  [OPTIONS]
+# host       DATABASE  USER  ADDRESS  METHOD  [OPTIONS]
+# hostssl    DATABASE  USER  ADDRESS  METHOD  [OPTIONS]
+# hostnossl  DATABASE  USER  ADDRESS  METHOD  [OPTIONS]
+#
+# (The uppercase items must be replaced by actual values.)
+#
+# The first field is the connection type: “local” is a Unix-domain
+# socket, “host” is either a plain or SSL-encrypted TCP/IP socket,
+# “hostssl” is an SSL-encrypted TCP/IP socket, and “hostnossl” is a
+# plain TCP/IP socket.
+#
+# DATABASE can be “all”, “sameuser”, “samerole”, “replication”, a
+# database name, or a comma-separated list thereof. The “all”
+# keyword does not match “replication”. Access to replication
+# must be enabled in a separate record (see example below).
+#
+# USER can be “all”, a user name, a group name prefixed with “+”, or a
+# comma-separated list thereof.  In both the DATABASE and USER fields
+# you can also write a file name prefixed with “@” to include names
+# from a separate file.
+#
+# ADDRESS specifies the set of hosts the record matches.  It can be a
+# host name, or it is made up of an IP address and a CIDR mask that is
+# an integer (between 0 and 32 (IPv4) or 128 (IPv6) inclusive) that
+# specifies the number of significant bits in the mask.  A host name
+# that starts with a dot (.) matches a suffix of the actual host name.
+# Alternatively, you can write an IP address and netmask in separate
+# columns to specify the set of hosts.  Instead of a CIDR-address, you
+# can write “samehost” to match any of the server’s own IP addresses,
+# or “samenet” to match any address in any subnet that the server is
+# directly connected to.
+#
+# METHOD can be “trust”, “reject”, “md5”, “password”, “gss”, “sspi”,
+# “krb5”, “ident”, “peer”, “pam”, “ldap”, “radius” or “cert”.  Note that
+# “password” sends passwords in clear text; “md5” is preferred since
+# it sends encrypted passwords.
+#
+# OPTIONS are a set of options for the authentication in the format
+# NAME=VALUE.  The available options depend on the different
+# authentication methods – refer to the “Client Authentication”
+# section in the documentation for a list of which options are
+# available for which authentication methods.
+#
+# Database and user names containing spaces, commas, quotes and other
+# special characters must be quoted.  Quoting one of the keywords
+# “all”, “sameuser”, “samerole” or “replication” makes the name lose
+# its special character, and just match a database or username with
+# that name.
+#
+# This file is read on server startup and when the postmaster receives
+# a SIGHUP signal.  If you edit the file on a running system, you have
+# to SIGHUP the postmaster for the changes to take effect.  You can
+# use “pg_ctl reload” to do that.
+
+Put your actual configuration here
+# ———————————-
+#
+# If you want to allow non-local connections, you need to add more
+# “host” records.  In that case you will also need to make PostgreSQL
+# listen on a non-local interface via the listen_addresses
+# configuration parameter, or via the -i or -h command line switches.
+
+
+         
+    </div>
+  </div>
+
+  
+ 	  <div class="post hidden">
+    <h1 class="post-title">
+      <a href="/emysql/2017/10/20/sql06/">
+        Linux系统下，PostgreSQL安装、启动与基本操作
+      </a>
+    </h1>
+    <span class="post-date" >20 Oct 2017</span>
+    <div class="post-content">
+         
+          
+
+
+## · 安装PostgreSQL
+1.查看系统是否安装了PostgreSQL：   
+shell
+rpm -qa | grep postgresql
+    
+注：如果没有结果就说明未安装,跳转到2    
+  如果有就利用 rm -rf 删除   
+2.利用yum安装PostgreSQL数据库    
+shell
+yum -y install postgresql*
+    
+3.查看安装好的PostgreSQL版本
+shell
+psql --version
+
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+
+· 启动PostgreSQL
+1.给linux添加一个PostgreSQL超级管理用户
+shell
+# 添加一个pg用户
+adduser pguser
+# 查看是否添加成功
+cat /etc/passwd | grep pguser
+
+2.启动PostgreSQL服务
+shell
+service postgresql start
+
+3.切换到PostgreSQL用户（postgres是数据库默认的角色）
+shell
+su postgres
+
+4.进入PostgreSQL数据库
+shell
+psql
+
+注：系统提示变为“postgres=#”,即进入到数据库中
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+
+· 操作PostgreSQL
+1.查看所有数据库
+shell
+\l
+
+2.选择数据库
+shell
+\c db_name
+
+3.查看当前数据库所有表格
+shell
+\d
+
+4.查看当前数据库所有表格
+shell
+\d
+
+5.查看表格的结构
+shell
+\d table_name
+
+6.退出控制台（快捷键Ctrl+D）
+shell
+\q
+
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+
+         
+    </div>
+  </div>
+
+  
+ 	  <div class="post hidden">
+    <h1 class="post-title">
+      <a href="/emysql/2017/10/10/sql05/">
+        MySQL基础讲义——SQL查询语句
+      </a>
+    </h1>
+    <span class="post-date" >10 Oct 2017</span>
+    <div class="post-content">
+         
+          · 单表查询
+select * from table_name;   
+where 条件查询   
+group by 分组查询   
+having 分组后筛选   
+order by 结果排序   
+-- 查询emp表中所有的行和列（emp表位于表管理单元测试中）   
+select * from emp;   
+-- 从表中检索部分的变量   
+select empno,ename,job,leader,hiredate,sal,comm,deptno from emp;   
+select empno as 员工编号,ename as 员工姓名,job as 职位,leader as 直属领导,hiredate as 雇用时间,sal as 薪水,comm as 津贴,deptno as 部门编号 from emp;   
+select empno 员工编号,ename 员工姓名,job 职位,leader 直属领导,hiredate 雇用时间,sal 薪水,comm 津贴,deptno 部门编号 from emp;   
+-- 查询去重   
+select distinct deptno from emp;
+
+---- 条件查询 ----    
+-- 从表中检索部分观测（大小写不敏感）   
+select * from emp where job='salesman';   
+-- 从表中查找空值   
+select * from emp where comm is null;   
+select * from emp where comm is not null;   
+-- 将空值转化为实际值   
+select coalesce(comm,0) from emp;   
+-- 多条件查询   
+select * from emp where deptno=10 or deptno=20;   
+select * from emp where deptno=10 or (deptno=20 and sal&lt;=2000);   
+-- 模糊查询   
+select * from emp where ename like 'a%';   
+select * from emp where ename like '%a%';   
+select * from emp where ename like '_a%';   
+
+---- 分组查询 ----  
+select deptno,sum(sal) from emp group by deptno;   
+select deptno,sum(comm) from emp group by deptno; #空值不计算   
+select deptno,sum(coalesce(comm,0)) from emp group by deptno; #空值变为0   
+select deptno,sum(sal) from emp where sal&gt;2000 group by deptno;   
+select deptno,job,sum(sal) from emp group by deptno,job;   
+---- 分组后筛选 ----  
+select deptno,job,sum(sal) from emp group by deptno,job having job = 'manager';    
+select deptno,job,sum(sal) from emp where job = 'manager' group by deptno,job; #where条件查询更快   
+-- 为什么还要having？    
+select deptno,job,sum(sal) from emp group by deptno,job having sum(sal)&gt;5000;   
+select deptno,job,new_sal from (select deptno,job,sum(sal) as new_sal from emp group by deptno,job) as a where new_sal&gt;5000;
+
+---- 结果排序 ----   
+select * from emp order by sal;   
+select * from emp order by sal desc;   
+select * from emp order by sal desc limit 5;   
+select deptno,job,sum(sal) as new_sal from emp group by deptno,job order by deptno,new_sal;   
+
+---- 逻辑操作符 ----   
+and,or 且，或   
+!=(&lt;&gt;) 不等于   
+is null 查询空值   
+like 模糊查询   
+between ... and ... (b&lt;=a&lt;c)   
+
+---- 逻辑表达式 ----     
+select ename,sal,
+case when sal&lt;= 2000 then '过低'   
+when sal&gt;= 4000 then '过高'   
+else '可行'   
+end as status   
+from emp;    
+
+
+· 多表查询
+创建测试表 a1、a2   
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+``` sql 
+create table a1(x int,y varchar(20));   
+create table a2(m int,n varchar(20));   
+insert into a1(x,y) values(1,”one”),(2,”two”),(2,”two”),(3,”three”);   
+insert into a2(m,n) values(1,”one”),(2,”two”),(4,”four”); 
+
+—- 纵向查询（连接的观测值——行）—-    
+select * from a1   
+union   
+select * from a2;   
+– 加入条件语句   
+select x,y from a1 where x=1   
+union   
+select m,n from a2 where m=2   
+order by 1 desc;   
+– emp各部门工资排名前三的员工   
+(select deptno,ename,sal from emp where deptno=10 order by sal desc limit 3)   
+union   
+(select deptno,ename,sal from emp where deptno=20 order by sal desc limit 3)   
+union   
+(select deptno,ename,sal from emp where deptno=30 order by sal desc limit 3);   
+
+—- 横向连接（连接的是变量——列）  —-    
+– 内连接   
+select * from a1 inner join a2 on a1.x=a2.m;   
+select * from a1 join a2 on a1.x=a2.m;   
+select * from a1,a2 where a1.x=a2.m;   
+– 左连接   
+select * from a1 left join a2 on a1.x=a2.m;   
+– 右连接   
+select * from a1 right join a2 on a1.x=a2.m;   
+– 全连接（Mysql不支持）   
+select * from a1 full join a2 on a1.x=a2.m; # MySQL不支持   
+select * from a1 left join a2 on a1.x=a2.m   
+union   
+select * from a1 right join a2 on a1.x=a2.m; 
+```  
+
+· 子查询
+创建测试表players,penalties
+&lt;div align="center"&gt;
+
+
+&lt;/div&gt;
+sql
+---- 表 子查询from型 ---- 
+-- 获取编号小于10的男性球员的号码
+select playerno from players where playerno&lt;10 and sex='M';
+select playerno from (select playerno,sex from players where playerno&lt;10) as players10 where sex='m';
+---- 行 子查询where型 ----
+-- 获取和100号球员性别相同并且居住在同一城市的球员号码
+select playerno,sex,town from players where (sex,town)=(select sex,town from players where playerno=100);
+-- 获取和27号球员出生在同一年的球员的号码
+select playerno,birth_date from players where year(birth_date)=(select year(birth_date) from players where playerno = 27);
+select playerno,birth_date from players where year(birth_date)=1964; #需求转化
+---- 列 子查询 ----
+-- 1.实例（in）：获取球员性别为女的所有球员的球员号，名字及所在城市
+select playerno,name,town from players where playerno in (select playerno from players where sex="F");
+-- 2.实例（any）：获取至少比同城的另一球员年轻的所有球员的号码，日期和居住城市
+select playerno,birth_date,town from players as p1 where birth_date&gt; any(select birth_date from players as p2 where p1.town = p2.town); 
+-- 3.实例（all）：获取最老球员的号码，名字及生日。（即出生日期数值小于或等于所有其它球员的球员）
+select playerno,name,birth_date from players where birth_date&lt;= all(select birth_date from players); 
+---- exists型子查询 ----
+-- 1.实例（exists）：获取那些至少支付了一次罚款的球员的名字和首字母
+select name,initials from players where exists (select * from penalties where playerno = players.playerno);
+-- 2.实例（not exists）：获取那些从来没有罚款的球员的名字和首字母
+select name,initials from players where not exists (select * from penalties where playerno = players.playerno);
+
+
+· 高级查询
+---- 数字运算 ----
+-- 每个部门平均值、最小值、最大值、工资合计、部门人数、获得提成人数
+select deptno as 部门编号,
+       avg(sal) as 平均值,
+       min(sal) as 最小值,
+       max(sal) as 最大值,
+       sum(sal) as 工资合计,
+       count(ename) 部门人数,
+       count(comm) 获得提成人数
+from emp group by deptno;
+-- 每个部门人均提成的算法
+select deptno 部门编号,
+       avg(comm) 错误的人均提成算法,
+       avg(coalesce(comm,0)) 正确的人均提成算法
+from emp group by deptno;
+---- 日期运算 ----
+select hiredate as 聘用日期,
+       date_add(hiredate,interval 1 day) as 日期加一天,
+       date_add(hiredate,interval 1 month) as 日期加一月,
+       date_add(hiredate,interval -1 month) as 日期减一月
+from emp;
+---- 字符串运算 ----
+select substring(ename,1,4) from emp; #截取字符串
+select replace(ename,"smith","SMITH") from emp; #替换字符串
+select concat(job,sal) as data from emp; #字符与数字合并
+select convert(empno,signed) from emp;  #数字转字符
+---- 正则表达式 ----
+#Mysql大小写不敏感，binary属性让大小写敏感
+create table aa1(id int auto_increment primary key,data varchar(20) binary);
+insert into aa1(data) values ("123"),("abc"),("123abc"),("abc123");
+insert into aa1(data) values ("DeF456"),("456dEf");
+select data from aa1 where data regexp "[0-9]";
+select data from aa1 where data regexp "[a-z]";
+select data from aa1 where data regexp "def";
+select data from aa1 where data regexp "[De][Ee][Ff]";
+
+
+         
+    </div>
+  </div>
+
+  
+ 	  <div class="post hidden">
+    <h1 class="post-title">
+      <a href="/emysql/2017/10/10/sql04/">
+        MySQL基础讲义——约束与表管理
+      </a>
+    </h1>
+    <span class="post-date" >10 Oct 2017</span>
+    <div class="post-content">
+         
+          · 约束
+约束作用：1.防止将错误值插入数据表；2.保持表中数据的一致性   
+包含哪些：1.非空约束、唯一约束、检查约束；2.主键约束、外键约束
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+
+-- 主键约束   
+create table s_user(   
+u_id int auto_increment primary key,   
+u_name varchar(20),   
+u_pwd varchar(20)   
+);   
+-- 外键约束   
+-- 方法1   
+create table s_order(   
+o_id int auto_increment primary key,   
+o_buyer_id int,   
+o_totalprices float,   
+foreign key(o_buyer_id) references s_user(u_id)   
+);   
+-- 方法2   
+create table s_order2(   
+o_id int auto_increment primary key,   
+o_buyer_id int,   
+o_totalprices float    
+);  
+alter table s_order2 add foreign key(o_buyer_id)   references s_user(u_id);   
+
+
+· 表管理
+-- 添加数据   
+insert into s_user(u_name,u_pwd) values("carry","123");   
+insert into s_user(u_name,u_pwd) values("carry","123"),("harry","456"),("marry","789");   
+-- 修改数据   
+set sql_safe_updates=0; #设置数据库安全等级  
+update s_user set u_pwd="963" where u_name="harry";   
+-- 删除数据   
+delete from s_user where u_name="marry";
+
+
+· 单元测试
+创建员工表emp
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+
+· 相关连接
+MySQL基础讲义—— 数据库与表空间   
+MySQL基础讲义—— 约束与表管理   
+MySQL基础讲义—— SQL查询
+
+
+         
+    </div>
+  </div>
+
+  
+ 	  <div class="post hidden">
+    <h1 class="post-title">
+      <a href="/emysql/2017/10/10/sql03/">
+        MySQL基础讲义——数据库与表空间
+      </a>
+    </h1>
+    <span class="post-date" >10 Oct 2017</span>
+    <div class="post-content">
+         
+          · 数据库
+-- 创建数据库   
+create database test1;   
+-- 查看数据库   
+show databases;   
+-- 选择数据库   
+use test1;   
+-- 删除数据库   
+drop database test1;  
+
+
+· 表空间
+表空间是什么？    
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+数据类型（共3大类）：数值型、字符型、日期型    
+数值型：int整数型、float浮点型    
+字符型：char、varchar  注意:区别，填满和不填满    
+日期型：datetime “YYYY-MM-DD hh:mm:ss”
+sql
+-- 创建表    
+create table stu_inf(id int(10),stu_name varchar(20),stu_sex varchar(20),stu_score float(10));      
+-- 查询表   
+show tables;   
+describe stu_inf;   
+-- 修改表(修改表名称，添加变量，修改变量，删除变量)    
+alter table stu_inf rename a1; #修改表名称   
+alter table a1 add column class varchar(20); #添加变量   
+alter table a1 change column class stu_class varchar(20); #修改变量   
+-- 删除表    
+drop table a1;
+
+
+索引：主键索引（一张表里只能有一个）     
+  唯一索引（一张表里可能存在多个）   
+作用：提高后台查询效率（为什么?）
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+sql
+-- 添加索引   
+alter table stu_inf add primary key(id);   
+alter table stu_inf add unique(stu_name);   
+-- 查询索引   
+show index from stu_inf;   
+-- 修改索引（先删除后添加）   
+-- 删除索引   
+alter table stu_inf drop primary key; #删除主键索引   
+alter table stu_inf drop index stu_name; #删除其他索引
+
+
+· 单元测试
+创建一个数据库 test_stu   
+进入数据库 test_stu   
+在数据库 test_stu 中建立四张表：   
+Student 学生表（id, S_name, S_age, S_sex, S_number）   
+Score 成绩表（S_number, C_name, score）   
+Teacher 教师表（S_number, C_name, T_name）   
+其中 id 为主键索引，S_number 为唯一索引
+
+· 相关连接
+MySQL基础讲义—— 数据库与表空间   
+MySQL基础讲义—— 约束与表管理   
+MySQL基础讲义—— SQL查询
+
+
+         
+    </div>
+  </div>
+
+  
  	  <div class="post hidden">
     <h1 class="post-title">
       <a href="/emysql/2017/05/08/sql02/">

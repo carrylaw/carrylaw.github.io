@@ -12,9 +12,8 @@
 		<div class="wrap">
 			<div class="masthead">
 				<div class="container">
-					<h3 class="masthead-title">
-						<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>		
-<!--					<img width="80" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>	-->					
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
 					{% if page.url contains 'category' %}
 						<a href="{{page.url}}" title="Home">{{ page.cn }}</a>
 			            <small class="font-kt">分类文章</small>					    
@@ -25,8 +24,10 @@
     					<a href="{{ site.baseurl }}/" title="Home">{{ site.title }}</a>
 			            <small class="font-kt">{{ site.tagline }}</small>
     				{% endif %}
-			        </h3>
-				{% include navbar.html %}
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						{% include navbar.html %}
+					</div>
 				</div>
 			</div>
 

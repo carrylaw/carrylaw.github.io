@@ -1,7 +1,11 @@
-## 静态博客
-基于Jekyll主题[Lanyon](http://lanyon.getpoole.com/)构建：
+## 个人博客 carrylaw.github.io 
 
-![Lanyon with open sidebar](https://f.cloud.github.com/assets/98681/1825267/be04a914-71b0-11e3-966f-8afe9894c729.png)
+<img width="350" height="350" src="https://raw.githubusercontent.com/carrylaw/carrylaw.github.io/master/public/rename.jpg" />
 
-同时整合了[minddust.com](http://www.minddust.com/)的样式。
-# bigablecat.github.io
+欢迎来到Carry的博客              
+博主常年专注于自然语言处理、机器学习算法               
+若有任何问题请发送邮件至 hbwhfeifei@qq.com               
+
+Carry的博客主题Fork自好友 [bigablecat.github.io](https://bigablecat.github.io/)         
+主题安装及使用方法请参考: [自带全文检索的jekyll主题](https://bigablecat.github.io/programming/2017/10/12/howtouse/)            
+再次感谢好友bigablecat大能猫的技术支持！

@@ -87,9 +87,9 @@
       
 		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
     
-		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
     
-		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
     
 		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
     
@@ -105,14 +105,15 @@
 		<div class="wrap">
 			<div class="masthead">
 				<div class="container">
-					<h3 class="masthead-title">
-					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
 					
     					<a href="/" title="Home">数分学长</a>
 			            <small class="font-kt">的博客</small>
     				
-			        </h3>
-				<nav class="nav-top">
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
 	<ul class="text-xs-center">
 		<li>
 			<!--检索框-->
@@ -144,6 +145,7 @@
 </nav>
 
 <!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
 				</div>
 			</div>
 
@@ -165,23 +167,51 @@
 	}
 	var keyword = decodeURI(decodeURI(getQueryString('q')));
 	var pageNum = 0;
-	var perPageItem = 10;
+	var perPageItem = 2;
 	var startNum = 0;
-	var endNum = 10 + perPageItem*pageNum;
+	var endNum = 2 + perPageItem*pageNum;
 	var totalNum = 0;
 	var $loading = $("<div class='loading' style='text-align:center !important;'><img src='/public/img/loading.gif'></div>");
 	
 	var articles;
 	$.getJSON("/public/json/search.json").done(function(data) {
 		articles = data;
-		getArticles();
+		totalNum = articles.length;
+		initArticles(); 
 	});
+	
+	/**
+	 * get the bottom offset of an element
+	*/
+	function getOffsetBottom(selector){
+		var offsetTop = $(selector).offset().top;
+		var documentHeight = $(selector).height();
+		var offsetBottom = $(window).height()-(offsetTop+documentHeight);
+		return offsetBottom;
+	}
+
+	/**
+	 * init the frist batch of articles to activate waypoint
+	 */
+	function initArticles() {
+		var offsetBottom = getOffsetBottom('div.post:last');
+		while(offsetBottom>0 && endNum<totalNum){
+			getArticles();
+			offsetBottom = getOffsetBottom('div.post:last');
+			increment();
+		}
+		getArticlesInfinite();
+	}
+
+	function getArticlesInfinite(){
+		getArticles();
+		createWaypoint();
+	}
 	
 	function getArticles() {
 		$('div.posts').append($loading);
 		var htmlArr = new Array();
 		var currentData = null;
-		totalNum = articles.length;
 		endNum = endNum>totalNum?totalNum:endNum;
 		for(var i=startNum; i<endNum;i++){
 			currentData = articles[i];
@@ -202,19 +232,18 @@
 		}
 		$('div.loading').remove();
 		$('.posts').append(htmlArr.join('').toString());
-		createWaypoint();
 	}
 	
 	function createWaypoint() {
 		$('div.posts div.post:last').waypoint(function(direction) {
-			if(startNum==endNum) {
+			if(startNum==totalNum) {
 				this.destroy();
 				return; //all articles have been loaded
 			}
 			if(direction == "down") {
-				increment();
 				this.destroy();
-				getArticles();
+				increment();
+				getArticlesInfinite();
 			}
 		}, {
 			offset: 'bottom-in-view'
@@ -241,7 +270,7 @@
 	function increment(){
 		startNum = endNum; //let next startNum equals last endNum
 		pageNum++;
-		endNum+=perPageItem*pageNum;
+		endNum =perPageItem*pageNum;
 	}
 	
 </script>

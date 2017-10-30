@@ -87,9 +87,9 @@
       
 		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/anlp/">- 自然语言处理</a>
     
-		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习</a>
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/bmarchine/">- 机器学习实战</a>
     
-		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cdeep/">- 深度学习</a>
+		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/cpython/">- Python技术</a>
     
 		<a class="sidebar-nav-item category-name-show" name="category-name" href="/blog/category/emysql/">- 数据库技术</a>
     
@@ -105,14 +105,15 @@
 		<div class="wrap">
 			<div class="masthead">
 				<div class="container">
-					<h3 class="masthead-title">
-					<img width="30" src="/public/logo.png" style="display: inline-block; margin: 0 !important; vertical-align: text-bottom;"/>						
+					<img src="/public/logo.png" class="masthead-img masthead-inner masthead-shrink"/>						
+					<h3 class="masthead-title masthead-inner masthead-shrink" >
 					
-						<a href="/blog/category/bmarchine/" title="Home">机器学习</a>
+						<a href="/blog/category/bmarchine/" title="Home">机器学习实战</a>
 			            <small class="font-kt">分类文章</small>					    
     				
-			        </h3>
-				<nav class="nav-top">
+					</h3>
+					<div class="masthead-nav masthead-inner">
+						<nav class="nav-top">
 	<ul class="text-xs-center">
 		<li>
 			<!--检索框-->
@@ -144,6 +145,7 @@
 </nav>
 
 <!--		<li><a href="http://www.jianshu.com/u/5caa2bf26f9b" class="label label-darkblue tooltip" title="jianshu" target="_blank"><span class="icon icon-jian"></span></a></li>-->
+					</div>
 				</div>
 			</div>
 
@@ -153,7 +155,89 @@
  
  	  <div class="post hidden">
     <h1 class="post-title">
-      <a href="/bmarchine/2017/08/30/ml02/">
+      <a href="/bmarchine/2017/10/13/ml02/">
+        Python机器学习算法之非线性回归
+      </a>
+    </h1>
+    <span class="post-date" >13 Oct 2017</span>
+    <div class="post-content">
+         
+            非线性回归相较于线性回归而言，总带有一丢丢复杂的神秘感。关于线性回归模型相信各位已耳熟能详，因此这里主要讨论非线性回归模型。其实非线性回归中很大一部分是基于多项式的回归模型，即利用曲线方程代替直线方程拟合坐标图上各点，使得各点到曲线的距离总和最短。   
+  一元m次多项式回归方程为：
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+  二元二次多项式回归方程为：
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+  多项式回归的最大优点就是可以通过增加x的高次项对实测点进行逼近，直至满意为止。事实上，多项式回归可以处理很大一类非线性问题，它在分析中占有重要的地位，因为任何一个函数都可以分段用多项式来逼近。   
+  举一个房屋价格与房屋尺寸非线性拟合的实例，数据集下载地址：prices.txt
+
+· 算法构建代码
+# python -version 3.5+   
+import matplotlib.pyplot as plt    
+import numpy as np    
+from sklearn import linear_model   
+from sklearn.preprocessing import PolynomialFeatures   
+
+# 读取数据集
+datasets_X = [] #建立datasets_X储存房屋尺寸数据
+datasets_Y = [] #建立datasets_Y储存房屋成交价格数据
+fr = open('E:\\prices.txt', 'r', encoding='utf-8') #指定prices.txt数据集所在路径
+lines = fr.readlines() #读取一整个文件夹
+for line in lines: #逐行读取，循环遍历所有数据
+    items = line.strip().split(",") #变量之间按逗号进行分隔
+    datasets_X.append(int(items[0])) #读取的数据转换为int型
+    datasets_Y.append(int(items[1]))
+
+# 数据预处理
+length = len(datasets_X)
+datasets_X = np.array(datasets_X).reshape([length, 1]) #将datasets_X转化为数组
+datasets_Y = np.array(datasets_Y)
+minX = min(datasets_X) #以数据datasets_X的最大值和最小值为范围，建立等差数列，方便后续画图
+maxX = max(datasets_X)
+X = np.arange(minX, maxX).reshape([-1, 1])
+
+# 数据建模
+poly_reg = PolynomialFeatures(degree=2) #degree=2表示二次多项式
+X_poly = poly_reg.fit_transform(datasets_X) #构造datasets_X二次多项式特征X_poly
+lin_reg_2 = linear_model.LinearRegression() #创建线性回归模型
+lin_reg_2.fit(X_poly, datasets_Y) #使用线性回归模型学习X_poly和datasets_Y之间的映射关系
+
+
+· 测试结果代码
+# 查看回归系数
+print('Coefficients:',lin_reg_2.coef_)
+# 查看截距项
+print('intercept:',lin_reg_2.intercept_)  
+
+# 数据可视化
+plt.scatter(datasets_X, datasets_Y, color='orange')   
+plt.plot(X, lin_reg_2.predict(poly_reg.fit_transform(X)), color='blue')   
+plt.xlabel('Area')   
+plt.ylabel('Price')   
+plt.show()   
+
+
+· 部分结果展示
+相关系数Coefficients: [  0.00000000e+00   4.93982848e-02   1.89186822e-05]     
+截距项intercept: 151.846967505     
+非线性回归公式：Y = 151.8470 + 4.9398e-02*x + 1.8919e-05*x^2
+
+非线性拟合图：
+&lt;div align="center"&gt;
+
+&lt;/div&gt;
+
+         
+    </div>
+  </div>
+
+  
+ 	  <div class="post hidden">
+    <h1 class="post-title">
+      <a href="/bmarchine/2017/08/30/ml01/">
         Python机器学习算法之逻辑回归
       </a>
     </h1>
@@ -165,7 +249,7 @@
   偏好使用sklearn的朋友，请跳转：sklearn主要模块和基本使用   
   输入数据集下载地址：训练集train，测试集test，预测集predict.txt
 
-算法构建代码
+· 算法构建代码
 
 # python -version 3.5+
 import numpy as np
@@ -230,7 +314,7 @@ def preLogRegres(weights ,pre_x):
     outfile.close()
 
 
-测试结果代码
+· 测试结果代码
 
 ## step 1: 模型训练
 def loadData(): # 载入训练集
@@ -277,46 +361,6 @@ print('模型预测结果：')
 predict = preLogRegres(optimalWeights, pre_x)
 
 
-
-         
-    </div>
-  </div>
-
-  
- 	  <div class="post hidden">
-    <h1 class="post-title">
-      <a href="/bmarchine/2017/04/01/py01/">
-        Anaconda中Jupyter Notebook路径修改
-      </a>
-    </h1>
-    <span class="post-date" >01 Apr 2017</span>
-    <div class="post-content">
-         
-          1.运行 -&gt; cmd -&gt; 输入jupyter notebook –-generate-config
-&lt;div align="center"&gt;
-
-&lt;/div&gt;
-
-2.打开C盘 -&gt; 用户 -&gt; admin -&gt; 看到.jupyter
-&lt;div align="center"&gt;
-
-&lt;/div&gt;
-
-3.进入.jupyter -&gt; 右键jupyter_notebook_config -&gt; Edit with Idle
-&lt;div align="center"&gt;
-
-&lt;/div&gt;
-
-4.找到c.NotebookApp.notebook_dir= 修改路径（注意去除#），后保存
-&lt;div align="center"&gt;
-
-&lt;/div&gt; 
- 注意：路径中jupyter为用户新建文件夹（可选择自己的路径）
-
-5.重新打开jupyter notebook（路径修改成功）
-&lt;div align="center"&gt;
-
-&lt;/div&gt; 
 
          
     </div>
