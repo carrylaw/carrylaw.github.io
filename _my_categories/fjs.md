@@ -1,6 +1,6 @@
 ---
 slug: fjs
 name: js
-cn:   数据可视化
+cn:   JS可视化技术
 color: '#242A3A'
 ---
