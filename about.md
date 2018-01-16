@@ -11,7 +11,7 @@ title: 关于
 <p>个人简介：<br/>
 Resume：</p>
 <ul>
-<li>中金数据系统 数据分析师<br/>Data Analyst at Centrin Data System.</li> 
+<li>中金数据系统 数分师<br/>Data Analyst at Centrin Data System.</li> 
 <li>CDA小讲师一枚<br/>Part-time Lecturer at CDA.</li>
 <li>机器学习系统开发者之一<br/>Developer of Machine Learnning System.</li>
 </ul>
