@@ -1,6 +1,6 @@
 ---
 slug: cpython
 name: python
-cn:   Python技术
+cn:   Python基础
 color: '#242A3A'
 ---
