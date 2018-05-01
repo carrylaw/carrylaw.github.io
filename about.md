@@ -12,6 +12,6 @@ title: 关于
 Resume：</p>
 <ul>
 <li>中金数据系统 数据分析师<br/>Data Analyst at Centrin Data System.</li> 
-<li>CDA数据分析培训讲师<br/>Data analysis Lecturer at CDA.</li>
-<li>机器学习系统开发者之一<br/>Developer of Machine Learnning System.</li>
+<li>CDA数据分析培训 讲师<br/>Data Analysis Lecturer at CDA.</li>
+<li>CPDA考试官方指导用书 作者<br/>The Author of Certified Projects Data Analyst Official Guides.</li>
 </ul>
