@@ -11,8 +11,8 @@ title: 关于
 <p>个人简介：<br/>
 Resume：</p>
 <ul>
-<li>中金数据系统 数据分析师<br/>Data Analyst at Centrin Data System.</li> 
-<li>智汇文本分析平台 产品负责人<br/>Product Manager of Text Analysis Platform.</li> 
-<li>CDA数据分析培训 讲师<br/>Data Analysis Lecturer at CDA.</li>   
-<li>CPDA官方指导用书 作者<br/>Author of CPDA Official Guide Book.</li> 
+<li>中金数据系统  数据分析师<br/>Data Analyst at Centrin Data System.</li> 
+<li>智汇文本分析平台  产品负责人<br/>Product Manager of Text Analysis Platform.</li> 
+<li>CDA数据分析培训  讲师<br/>Data Analysis Lecturer at CDA.</li>   
+<li>CPDA官方指导用书  作者<br/>Author of CPDA Official Guide Book.</li> 
 </ul>
