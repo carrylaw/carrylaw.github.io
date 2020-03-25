@@ -3,7 +3,7 @@ layout: page
 title: 关于
 ---
 
-<p>欢迎来到Carry的博客<br/>
+<p>欢迎来到数分学长的博客<br/>
 博主常年专注于自然语言处理、机器学习算法<br/>
 若有任何问题请发送邮件至 hbwhfeifei@qq.com
 </p>
